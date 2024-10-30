@@ -9,10 +9,12 @@ class SceneMgr : public Singleton<SceneMgr>
 protected:
 	std::vector<Scene*> scenes;
 
-	SceneIds startScene = SceneIds::Dev2;
+	SceneIds startScene = SceneIds::Title;
 	SceneIds currentScene;
 
 	SceneIds nextScene = SceneIds::None;
+
+	SceneIds selectStage = SceneIds::SelectStage;
 
 	SceneMgr() = default;
 	virtual ~SceneMgr() = default;

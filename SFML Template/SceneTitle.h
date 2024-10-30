@@ -1,19 +1,18 @@
 #pragma once
 #include "Scene.h"
 
-class TextGo;
 class Button;
 
-class SceneDev2 : public Scene
-{	
+class SceneTitle : public Scene
+{
 protected:
 	Button* startBtn;
 	Button* quitBtn;
 	bool startBtnPressed;
 	bool quitBtnPressed;
 public:
-	SceneDev2();
-	~SceneDev2() = default;
+	SceneTitle();
+	~SceneTitle() = default;
 
 	void Init() override;
 	void Enter() override;

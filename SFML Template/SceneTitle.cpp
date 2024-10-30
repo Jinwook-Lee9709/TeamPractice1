@@ -84,7 +84,7 @@ void SceneTitle::Update(float dt)
 	if (InputMgr::GetMouseButtonUp(sf::Mouse::Left)) {
 		if (startBtn->IsCursorOn()) {
 			startBtnPressed = false;
-			SCENE_MGR.ChangeScene(SceneIds::Select);
+			SCENE_MGR.ChangeScene(SceneIds::VsScene);
 		}
 		else if (quitBtn->IsCursorOn()) {
 			quitBtnPressed = false;

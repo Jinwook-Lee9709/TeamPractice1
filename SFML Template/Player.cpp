@@ -156,7 +156,6 @@ void Player::PlayFirstP(float dt)
 		isChppoing = true;
 		SetSide(Sides::Right);
 		sceneGame->OnChop(Sides::Right, chkP);
-		sceneGame->OnChop(Sides::Left, chkP);
 	}
 
 	if (InputMgr::GetKeyUp(sf::Keyboard::Right))
@@ -185,7 +184,6 @@ void Player::PlaySecondP(float dt)
 		isChppoing = true;
 		SetSide(Sides::Right);
 		sceneGame->OnChop(Sides::Right, chkP);
-		sceneGame->OnChop(Sides::Left, chkP);
 	}
 
 	if (InputMgr::GetKeyUp(sf::Keyboard::D))

@@ -2,6 +2,7 @@
 #include "Scene.h"
 
 class TextGo;
+class Button;
 
 class SelectStage : public Scene
 {
@@ -17,7 +18,14 @@ public:
 protected:
 	Status currentStatus = Status::Awake;
 
+	std::string BackGroundtexId;
+
 	TextGo* centerMsg;
+
+	Button* stage1Btn;
+	Button* stage2Btn;
+	bool stage1BtnPressed;
+	bool stage2BtnPressed;
 
 public:
 	SelectStage();
@@ -35,6 +43,6 @@ public:
 	void SetCenterMessage(const std::string& msg);
 	void SetVisibleCenterMessage(bool visible);
 
-	void GetBackgroundFile(const std::string& file);
+	void GetBackgroundTexId(const std::string& texId);
 };
 

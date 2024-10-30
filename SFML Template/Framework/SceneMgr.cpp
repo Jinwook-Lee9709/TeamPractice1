@@ -2,12 +2,15 @@
 #include "SceneMgr.h"
 #include "SceneDev1.h"
 #include "SceneDev2.h"
+#include "VsScene.h"
 
 
 void SceneMgr::Init()
 {
-	scenes.push_back(new SceneDev1());	
+	
+	scenes.push_back(new SceneDev1());
 	scenes.push_back(new SceneDev2());
+	scenes.push_back(new VsScene());
 
 	for (auto scene : scenes)
 	{
@@ -22,6 +25,10 @@ void SceneMgr::Release()
 {
 	for (auto scene : scenes)
 	{
+		if (currentScene == scene->id)
+		{
+			scene->Exit();
+		}
 		scene->Release();
 		delete scene;
 	}

@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "SceneDev1.h"
+#include "VsScene.h"
 #include "SpriteGo.h"
 #include "CloudGo.h"
 #include "Tree.h"
@@ -8,13 +8,13 @@
 #include "UiScore.h"
 #include "UiTimebar.h"
 
-SceneDev1::SceneDev1() : Scene(SceneIds::Dev1)
+VsScene::VsScene() : Scene(SceneIds::VsScene)
 {
 }
 
-void SceneDev1::Init()
+void VsScene::Init()
 {
-	std::cout << "SceneDev1::Init()" << std::endl;
+	std::cout << "VsScene::Init()" << std::endl;
 
 	GameObject* obj = AddGo(new SpriteGo("graphics/background.png"));
 	obj->sortingLayer = SortingLayers::Background;
@@ -38,6 +38,8 @@ void SceneDev1::Init()
 	tree = AddGo(new Tree("Tree"));
 	player = AddGo(new Player("Player"));
 
+	tree2 = AddGo(new Tree("Tree"));
+	player2 = AddGo(new Player("Player"));
 
 	centerMsg = AddGo(new TextGo("fonts/KOMIKAP_.ttf", "Center Message"));
 	centerMsg->sortingLayer = SortingLayers::UI;
@@ -47,8 +49,13 @@ void SceneDev1::Init()
 
 	Scene::Init();
 
-	tree->SetPosition({ 1920.f / 2, 1080.f - 200.f });
-	player->SetPosition({ 1920.f / 2, 1080.f - 200.f });
+	tree->SetPosition({ 1920.f / 3.5, 1080.f - 200.f });
+	player->SetPosition({ 1920.f / 3.5, 1080.f - 200.f });
+	player->SetChkP(ChkPlayer::FirstP);
+
+	tree2->SetPosition({ 1920.f / 1.5, 1080.f - 200.f });
+	player2->SetPosition({ 1920.f / 1.5, 1080.f - 200.f });
+	player2->SetChkP(ChkPlayer::SecondP);
 
 	centerMsg->text.setCharacterSize(100);
 	centerMsg->text.setFillColor(sf::Color::White);
@@ -57,13 +64,13 @@ void SceneDev1::Init()
 	uiScore->text.setCharacterSize(75);
 	uiScore->text.setFillColor(sf::Color::White);
 	uiScore->SetPosition({ 30.f, 30.f });
-	
+
 	uiTimer->Set({ 500.f, 100.f }, sf::Color::Red);
 	uiTimer->SetOrigin(Origins::ML);
 	uiTimer->SetPosition({ 1920.f / 2.f - 250.f, 1080.f - 100.f });
 }
 
-void SceneDev1::Enter()
+void VsScene::Enter()
 {
 	TEXTURE_MGR.Load("graphics/background.png");
 	TEXTURE_MGR.Load("graphics/cloud.png");
@@ -82,19 +89,22 @@ void SceneDev1::Enter()
 	sfxTimeOut.setBuffer(SOUNDBUFFER_MGR.Get(sbIdTimeOut));
 
 	player->SetSceneGame(this);
+	player2->SetSceneGame(this);
 
 	Scene::Enter();
-	 
+
 	SetStatus(Status::Awake);
 }
 
-void SceneDev1::Exit()
+void VsScene::Exit()
 {
-	std::cout << "SceneDev1::Exit()" << std::endl;
+	std::cout << "VsScene::Exit()" << std::endl;
 
 	player->SetSceneGame(nullptr);
 	tree->ClearEffectLog();
 
+	player2->SetSceneGame(nullptr);
+	tree2->ClearEffectLog();
 
 	Scene::Exit();
 
@@ -113,63 +123,63 @@ void SceneDev1::Exit()
 
 }
 
-void SceneDev1::Update(float dt)
-{ 
+void VsScene::Update(float dt)
+{
 	Scene::Update(dt);
 
 
 	if (InputMgr::GetKeyDown(sf::Keyboard::Space))
 	{
-		SCENE_MGR.ChangeScene(SceneIds::VsScene);
+		SCENE_MGR.ChangeScene(SceneIds::Dev1);
 	}
 
 	switch (currentStatus)
 	{
-	case SceneDev1::Status::Awake:
+	case VsScene::Status::Awake:
 		UpdateAwake(dt);
 		break;
-	case SceneDev1::Status::Game:
+	case VsScene::Status::Game:
 		UpdateGame(dt);
 		break;
-	case SceneDev1::Status::GameOver:
+	case VsScene::Status::GameOver:
 		UpdateGameOver(dt);
 		break;
-	case SceneDev1::Status::Pause:
+	case VsScene::Status::Pause:
 		UpdatePause(dt);
 		break;
 	}
 }
 
-void SceneDev1::Draw(sf::RenderWindow& window)
+void VsScene::Draw(sf::RenderWindow& window)
 {
 	Scene::Draw(window);
 }
 
-void SceneDev1::SetCenterMessage(const std::string& msg)
+void VsScene::SetCenterMessage(const std::string& msg)
 {
 	centerMsg->text.setString(msg);
 	centerMsg->SetOrigin(Origins::MC);
 }
 
-void SceneDev1::SetVisibleCenterMessage(bool visible)
+void VsScene::SetVisibleCenterMessage(bool visible)
 {
 	centerMsg->SetActive(visible);
 }
 
-void SceneDev1::SetScore(int score)
+void VsScene::SetScore(int score)
 {
 	this->score = score;
 	uiScore->SetScore(this->score);
 }
 
-void SceneDev1::SetStatus(Status newStatus)
+void VsScene::SetStatus(Status newStatus)
 {
 	Status prevStatus = currentStatus;
 	currentStatus = newStatus;
 
 	switch (currentStatus)
 	{
-	case SceneDev1::Status::Awake:
+	case VsScene::Status::Awake:
 		FRAMEWORK.SetTimeScale(0.f);
 		SetVisibleCenterMessage(true);
 		SetCenterMessage("Press Enter To Start!!");
@@ -178,7 +188,7 @@ void SceneDev1::SetStatus(Status newStatus)
 		SetScore(score);
 		uiTimer->SetValue(1.f);
 		break;
-	case SceneDev1::Status::Game:
+	case VsScene::Status::Game:
 		if (prevStatus == Status::GameOver)
 		{
 			score = 0;
@@ -189,15 +199,17 @@ void SceneDev1::SetStatus(Status newStatus)
 
 			player->Reset();
 			tree->Reset();
+			player2->Reset();
+			tree2->Reset();
 		}
 		FRAMEWORK.SetTimeScale(1.f);
 		SetVisibleCenterMessage(false);
 		break;
-	case SceneDev1::Status::GameOver:
+	case VsScene::Status::GameOver:
 		FRAMEWORK.SetTimeScale(0.f);
 		SetVisibleCenterMessage(true);
 		break;
-	case SceneDev1::Status::Pause:
+	case VsScene::Status::Pause:
 		FRAMEWORK.SetTimeScale(0.f);
 		SetVisibleCenterMessage(true);
 		SetCenterMessage("PAUSE! ESC TO RESUME!");
@@ -205,7 +217,7 @@ void SceneDev1::SetStatus(Status newStatus)
 	}
 }
 
-void SceneDev1::UpdateAwake(float dt)
+void VsScene::UpdateAwake(float dt)
 {
 	if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
 	{
@@ -213,7 +225,7 @@ void SceneDev1::UpdateAwake(float dt)
 	}
 }
 
-void SceneDev1::UpdateGame(float dt)
+void VsScene::UpdateGame(float dt)
 {
 	if (InputMgr::GetKeyDown(sf::Keyboard::Escape))
 	{
@@ -227,14 +239,14 @@ void SceneDev1::UpdateGame(float dt)
 	{
 		sfxTimeOut.play();
 
-		player->OnDie();
+		//player->OnDie();
 		SetCenterMessage("Time Over!");
 		SetStatus(Status::GameOver);
 		return;
 	}
 }
 
-void SceneDev1::UpdateGameOver(float dt)
+void VsScene::UpdateGameOver(float dt)
 {
 	if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
 	{
@@ -242,7 +254,7 @@ void SceneDev1::UpdateGameOver(float dt)
 	}
 }
 
-void SceneDev1::UpdatePause(float dt)
+void VsScene::UpdatePause(float dt)
 {
 	if (InputMgr::GetKeyDown(sf::Keyboard::Escape))
 	{
@@ -250,20 +262,40 @@ void SceneDev1::UpdatePause(float dt)
 	}
 }
 
-void SceneDev1::OnChop(Sides side, ChkPlayer chk)
+void VsScene::OnChop(Sides side, ChkPlayer chk)
 {
-	Sides branchSide = tree->Chop(side);
-	if (player->GetSide() == branchSide)
+	if (chk == ChkPlayer::FirstP)
 	{
-		sfxDeath.play();
+		Sides branchSide = tree->Chop(side);
+		if (player->GetSide() == branchSide)
+		{
+			sfxDeath.play();
 
-		player->OnDie();
-		SetCenterMessage("You Die!");
-		SetStatus(Status::GameOver);
+			//player->OnDie();
+			SetCenterMessage("You Die!");
+			SetStatus(Status::GameOver);
+		}
+		else
+		{
+			SetScore(score + 100);
+			timer += 1.f;
+		}
 	}
-	else
+	else if (chk == ChkPlayer::SecondP)
 	{
-		SetScore(score + 100);
-		timer += 1.f;
+		Sides branchSide = tree2->Chop(side);
+		if (player2->GetSide() == branchSide)
+		{
+			sfxDeath.play();
+
+			//player->OnDie();
+			SetCenterMessage("You Die!");
+			SetStatus(Status::GameOver);
+		}
+		else
+		{
+			SetScore(score + 100);
+			timer += 1.f;
+		}
 	}
 }

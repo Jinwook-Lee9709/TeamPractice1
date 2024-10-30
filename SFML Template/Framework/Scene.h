@@ -2,13 +2,15 @@
 class Scene
 {
 protected:
-	const SceneIds id;
+	
 	std::list<GameObject*> gameObjects;
 
 	std::list<GameObject*> addGameObjects;
 	std::list<GameObject*> removeGameObjects;
 
 public:
+	const SceneIds id;
+
 	Scene(SceneIds id);
 	virtual ~Scene() = default;
 
@@ -35,6 +37,8 @@ public:
 	virtual void RemoveGo(GameObject* obj);
 	virtual GameObject* FindGo(const std::string& name);
 	virtual int FindGoAll(const std::string& name, std::list<GameObject*>& list);
+
+	virtual void OnChop(Sides side, ChkPlayer chk);
 
 	void ApplyAddGo();
 	void ApplyRemoveGO();

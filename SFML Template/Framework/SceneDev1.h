@@ -25,7 +25,9 @@ protected:
 	Player* player;
 
 	TextGo* centerMsg;
+	
 	UiScore* uiScore;
+	
 	UiTimebar* uiTimer;
 
 	int score = 0;

@@ -14,6 +14,8 @@ protected:
 
 	SceneIds nextScene = SceneIds::None;
 
+	SceneIds selectStage = SceneIds::SelectStage;
+
 	SceneMgr() = default;
 	virtual ~SceneMgr() = default;
 

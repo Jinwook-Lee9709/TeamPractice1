@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "SceneDev2.h"
 #include "SpriteGo.h"
+#include "TextGo.h"
 
 SceneDev2::SceneDev2() : Scene(SceneIds::Dev2)
 {
@@ -42,6 +43,7 @@ void SceneDev2::Update(float dt)
 	{
 		SCENE_MGR.ChangeScene(SceneIds::Dev1);
 	}
+
 }
 
 void SceneDev2::Draw(sf::RenderWindow& window)

@@ -1,8 +1,12 @@
 #pragma once
 #include "Scene.h"
+
+class TextGo;
+
 class SceneDev2 : public Scene
-{
+{	
 protected:
+
 
 public:
 	SceneDev2();

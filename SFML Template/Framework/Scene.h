@@ -14,6 +14,8 @@ public:
 	Scene(SceneIds id);
 	virtual ~Scene() = default;
 
+	SceneIds GetSceneId() { return id; }
+
 	virtual void Init();
 	virtual void Release();
 

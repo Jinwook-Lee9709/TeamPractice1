@@ -147,6 +147,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Branch.cpp" />
+    <ClCompile Include="Framework\Button.cpp" />
     <ClCompile Include="CloudGo.cpp" />
     <ClCompile Include="EffectLog.cpp" />
     <ClCompile Include="Framework\Framework.cpp" />
@@ -171,6 +172,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Branch.h" />
+    <ClInclude Include="Framework\Button.h" />
     <ClInclude Include="CloudGo.h" />
     <ClInclude Include="Framework\Defines.h" />
     <ClInclude Include="EffectLog.h" />

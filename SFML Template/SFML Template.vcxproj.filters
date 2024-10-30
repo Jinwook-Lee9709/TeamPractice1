@@ -73,6 +73,7 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="VsScene.cpp">
+    <ClCompile Include="Framework\Button.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -144,6 +145,7 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="VsScene.h">
+    <ClInclude Include="Framework\Button.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

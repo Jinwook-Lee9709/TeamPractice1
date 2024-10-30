@@ -14,6 +14,8 @@ enum class SceneIds
 	Dev1,
 	Dev2,
 	VsScene,
+	title,
+	select,
 	Count,
 };
 

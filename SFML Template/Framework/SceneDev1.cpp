@@ -38,7 +38,6 @@ void SceneDev1::Init()
 	tree = AddGo(new Tree("Tree"));
 	player = AddGo(new Player("Player"));
 
-
 	centerMsg = AddGo(new TextGo("fonts/KOMIKAP_.ttf", "Center Message"));
 	centerMsg->sortingLayer = SortingLayers::UI;
 
@@ -54,10 +53,12 @@ void SceneDev1::Init()
 	centerMsg->text.setFillColor(sf::Color::White);
 	centerMsg->SetPosition({ 1920.f / 2.f, 1080.f / 2.f });
 
+	uiScore->sortingLayer = SortingLayers::UI;
+
 	uiScore->text.setCharacterSize(75);
 	uiScore->text.setFillColor(sf::Color::White);
 	uiScore->SetPosition({ 30.f, 30.f });
-	
+
 	uiTimer->Set({ 500.f, 100.f }, sf::Color::Red);
 	uiTimer->SetOrigin(Origins::ML);
 	uiTimer->SetPosition({ 1920.f / 2.f - 250.f, 1080.f - 100.f });
@@ -114,7 +115,7 @@ void SceneDev1::Exit()
 }
 
 void SceneDev1::Update(float dt)
-{ 
+{
 	Scene::Update(dt);
 
 

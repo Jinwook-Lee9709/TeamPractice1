@@ -95,6 +95,7 @@ void SceneDev2::Update(float dt)
 			quitBtnPressed = false;
 		}
 	}
+
 }
 
 void SceneDev2::Draw(sf::RenderWindow& window)

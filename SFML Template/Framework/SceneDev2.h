@@ -1,10 +1,11 @@
 #pragma once
 #include "Scene.h"
 
+class TextGo;
 class Button;
 
 class SceneDev2 : public Scene
-{
+{	
 protected:
 	Button* startBtn;
 	Button* quitBtn;

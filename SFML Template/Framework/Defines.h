@@ -42,3 +42,9 @@ enum class ChkPlayer
 	FirstP,
 	SecondP,
 };
+
+enum class PlayMode
+{
+	Single,
+	Multi,
+};

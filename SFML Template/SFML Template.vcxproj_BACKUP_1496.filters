@@ -27,6 +27,7 @@
     <ClCompile Include="Variables.cpp" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClInclude Include="Branch.h" />
     <ClInclude Include="Framework\Button.h" />
     <ClInclude Include="CloudGo.h" />
@@ -54,6 +55,7 @@
     <ClInclude Include="Framework\Utils.h" />
     <ClInclude Include="VsScene.h" />
     <ClInclude Include="Variables.h" />
+=======
     <ClCompile Include="Framework\main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -205,5 +207,6 @@
     <ClInclude Include="SceneTitle.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+>>>>>>> origin/develop
   </ItemGroup>
 </Project>

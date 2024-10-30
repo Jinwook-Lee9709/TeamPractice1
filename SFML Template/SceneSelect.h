@@ -1,11 +1,15 @@
 #pragma once
 #include "Scene.h"
+
+class Button;
 class SceneSelect :
     public Scene
 {
 protected:
-	bool startBtnPressed;
-	bool quitBtnPressed;
+	Button* singleBtn;
+	Button* multiBtn;
+	bool singleBtnPressed;
+	bool multiBtnPressed;
 public:
 	SceneSelect();
 	~SceneSelect() = default;

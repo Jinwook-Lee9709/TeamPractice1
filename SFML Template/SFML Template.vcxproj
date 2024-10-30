@@ -171,6 +171,7 @@
     <ClCompile Include="UiScore.cpp" />
     <ClCompile Include="UiTimebar.cpp" />
     <ClCompile Include="Framework\Utils.cpp" />
+    <ClCompile Include="Variables.cpp" />
     <ClCompile Include="VsScene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -200,6 +201,7 @@
     <ClInclude Include="UiScore.h" />
     <ClInclude Include="UiTimebar.h" />
     <ClInclude Include="Framework\Utils.h" />
+    <ClInclude Include="Variables.h" />
     <ClInclude Include="VsScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -147,6 +147,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Branch.cpp" />
+    <ClCompile Include="Framework\Button.cpp" />
     <ClCompile Include="CloudGo.cpp" />
     <ClCompile Include="EffectLog.cpp" />
     <ClCompile Include="Framework\Framework.cpp" />
@@ -163,14 +164,21 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Framework\TextGo.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="SelectStage.cpp" />
+=======
+    <ClCompile Include="SceneSelect.cpp" />
+    <ClCompile Include="SceneTitle.cpp" />
+>>>>>>> origin/develop
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="UiScore.cpp" />
     <ClCompile Include="UiTimebar.cpp" />
     <ClCompile Include="Framework\Utils.cpp" />
+    <ClCompile Include="VsScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Branch.h" />
+    <ClInclude Include="Framework\Button.h" />
     <ClInclude Include="CloudGo.h" />
     <ClInclude Include="Framework\Defines.h" />
     <ClInclude Include="EffectLog.h" />
@@ -188,11 +196,17 @@
     <ClInclude Include="Framework\SpriteGo.h" />
     <ClInclude Include="Framework\stdafx.h" />
     <ClInclude Include="Framework\TextGo.h" />
+<<<<<<< HEAD
     <ClInclude Include="SelectStage.h" />
+=======
+    <ClInclude Include="SceneSelect.h" />
+    <ClInclude Include="SceneTitle.h" />
+>>>>>>> origin/develop
     <ClInclude Include="Tree.h" />
     <ClInclude Include="UiScore.h" />
     <ClInclude Include="UiTimebar.h" />
     <ClInclude Include="Framework\Utils.h" />
+    <ClInclude Include="VsScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

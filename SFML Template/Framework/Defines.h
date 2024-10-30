@@ -13,7 +13,13 @@ enum class SceneIds
 	None = -1,
 	Dev1,
 	Dev2,
+<<<<<<< HEAD
 	SelectStage,
+=======
+	VsScene,
+	Title,
+	Select,
+>>>>>>> origin/develop
 	Count,
 };
 
@@ -32,4 +38,10 @@ enum class Sides
 	Left,
 	Right,
 	None,
+};
+
+enum class ChkPlayer
+{
+	FirstP,
+	SecondP,
 };

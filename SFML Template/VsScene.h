@@ -7,7 +7,7 @@ class TextGo;
 class UiScore;
 class UiTimebar;
 
-class SceneDev1 : public Scene
+class VsScene : public Scene
 {
 public:
 	enum class Status
@@ -24,10 +24,11 @@ protected:
 	Tree* tree;
 	Player* player;
 
+	Tree* tree2;
+	Player* player2;
+
 	TextGo* centerMsg;
-	
 	UiScore* uiScore;
-	
 	UiTimebar* uiTimer;
 
 	int score = 0;
@@ -41,8 +42,8 @@ protected:
 	std::string sbIdTimeOut = "sound/out_of_time.wav";
 
 public:
-	SceneDev1();
-	~SceneDev1() = default;
+	VsScene();
+	~VsScene() = default;
 
 	void Init() override;
 	void Enter() override;

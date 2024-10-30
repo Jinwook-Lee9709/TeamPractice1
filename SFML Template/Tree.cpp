@@ -119,6 +119,16 @@ void Tree::SetPosition(const sf::Vector2f& pos)
 	UpdateBranchPos();
 }
 
+void Tree::SetScale(const sf::Vector2f& scale)
+{
+	GameObject::SetScale(scale);
+	tree.setScale(this->scale);
+	for (auto branch : branches)
+	{
+		branch->SetScale(scale);
+	}
+}
+
 void Tree::ClearEffectLog()
 {
 	for (auto log : logEffects)

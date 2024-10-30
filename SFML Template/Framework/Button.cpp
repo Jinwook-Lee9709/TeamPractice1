@@ -2,7 +2,7 @@
 #include "Button.h"
 
 Button::Button(const std::string& fontId, const std::string& name)
-	:GameObject(name), fontId(fontId), pressed(false)
+	:GameObject(name), fontId(fontId)
 {
 	text.setFont(FONT_MGR.Get(fontId));
 	rect.setSize({ 370.f, 180.f });
@@ -50,11 +50,9 @@ void Button::Update(float dt)
 	{ (float)InputMgr::GetMousePosition().x, (float)InputMgr::GetMousePosition().y };
 	if (rect.getGlobalBounds().contains(mousePos)) {
 		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left) || InputMgr::GetMouseButton(sf::Mouse::Left)) {
-			pressed = true;
 			text.setFillColor(ColorPressed);
 		}
 		else if (InputMgr::GetMouseButtonUp(sf::Mouse::Left)) {
-			pressed = false;
 			text.setFillColor(ColorHover);
 		}
 		else {
@@ -62,7 +60,6 @@ void Button::Update(float dt)
 		}
 	}
 	else {
-		pressed = false;
 		text.setFillColor(ColorIdle);
 	}
 
@@ -79,6 +76,13 @@ void Button::SetFontSize(int size)
 {
 	text.setCharacterSize(size);
 
+}
+
+bool Button::IsCursorOn()
+{
+	sf::Vector2f mousePos =
+	{ (float)InputMgr::GetMousePosition().x, (float)InputMgr::GetMousePosition().y };
+	return rect.getGlobalBounds().contains(mousePos);
 }
 
 

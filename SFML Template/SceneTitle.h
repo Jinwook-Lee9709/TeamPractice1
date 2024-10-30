@@ -3,7 +3,7 @@
 
 class Button;
 
-class SceneDev2 : public Scene
+class SceneTitle : public Scene
 {
 protected:
 	Button* startBtn;
@@ -11,8 +11,8 @@ protected:
 	bool startBtnPressed;
 	bool quitBtnPressed;
 public:
-	SceneDev2();
-	~SceneDev2() = default;
+	SceneTitle();
+	~SceneTitle() = default;
 
 	void Init() override;
 	void Enter() override;

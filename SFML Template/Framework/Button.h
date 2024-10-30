@@ -11,7 +11,6 @@ private:
 	sf::RectangleShape rect;
 	sf::Text text;
 
-	bool pressed;
 
 public:
 
@@ -33,7 +32,7 @@ public:
 	void SetText(const sf::String& str);
 	void SetFontSize(int size);
 
-	bool IsPressed() { return pressed; }
+	bool IsCursorOn();
 
 
 

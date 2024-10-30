@@ -1,20 +1,20 @@
 #include "stdafx.h"
-#include "SceneDev2.h"
+#include "SceneTitle.h"
 #include "SpriteGo.h"
 #include "TextGo.h"
 #include "Button.h"
 
-SceneDev2::SceneDev2() : Scene(SceneIds::Dev2)
+SceneTitle::SceneTitle() : Scene(SceneIds::Title)
 {
 
 }
 
-void SceneDev2::Init()
+void SceneTitle::Init()
 {
 	FONT_MGR.Load("fonts/KOMIKAP_.ttf");
 	std::cout << "SceneDev2::Init()" << std::endl;
 
-	auto* obj = AddGo(new SpriteGo("graphics/Background.png"));
+	auto* obj = AddGo(new SpriteGo("graphics/titlebackground.png"));
 	startBtn = AddGo(new Button("fonts/KOMIKAP_.ttf"));
 	quitBtn = AddGo(new Button("fonts/KOMIKAP_.ttf"));
 	Scene::Init();
@@ -45,17 +45,17 @@ void SceneDev2::Init()
 	
 }
 
-void SceneDev2::Enter()
+void SceneTitle::Enter()
 {
 	std::cout << "SceneDev2::Enter()" << std::endl;
 
-	TEXTURE_MGR.Load("graphics/Background.png");
+	TEXTURE_MGR.Load("graphics/titlebackground.png");
 	FONT_MGR.Load("fonts/KOMIKAP_.ttf");
 
 	Scene::Enter();
 }
 
-void SceneDev2::Exit()
+void SceneTitle::Exit()
 {
 	std::cout << "SceneDev2::Exit()" << std::endl;
 
@@ -65,7 +65,7 @@ void SceneDev2::Exit()
 	FONT_MGR.Unload("fonts/KOMIKAP_.ttf");
 }
 
-void SceneDev2::Update(float dt)
+void SceneTitle::Update(float dt)
 {
 	Scene::Update(dt);
 
@@ -97,7 +97,7 @@ void SceneDev2::Update(float dt)
 	}
 }
 
-void SceneDev2::Draw(sf::RenderWindow& window)
+void SceneTitle::Draw(sf::RenderWindow& window)
 {
 	Scene::Draw(window);
 }

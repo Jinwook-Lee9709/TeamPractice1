@@ -17,7 +17,7 @@ void Branch::SetSide(Sides side)
 		break;
 	case Sides::Right:
 		SetActive(true);
-		SetScale({ 1.f, 1.f });
+		SetScale({ 1.f , 1.f });
 		break;
 	default:
 		SetActive(false);

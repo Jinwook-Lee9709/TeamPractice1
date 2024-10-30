@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Player.h"
 #include "SceneDev1.h"	
+#include "VsScene.h"
 
 Player::Player(const std::string& name) : GameObject(name)
 {
@@ -108,32 +109,10 @@ void Player::Update(float dt)
 {
 	if (!isAlive)
 		return;
-
-	if (InputMgr::GetKeyDown(sf::Keyboard::Left))
-	{
-		isChppoing = true;
-		SetSide(Sides::Left);
-		sceneGame->OnChop(Sides::Left);
-		sfxChop.play();
-	}
-
-	if (InputMgr::GetKeyUp(sf::Keyboard::Left))
-	{
-		isChppoing = false;
-	}
-
-	if (InputMgr::GetKeyDown(sf::Keyboard::Right))
-	{
-		isChppoing = true;
-		SetSide(Sides::Right);
-		sceneGame->OnChop(Sides::Right);
-		sceneGame->OnChop(Sides::Left);
-	}
-
-	if (InputMgr::GetKeyUp(sf::Keyboard::Right))
-	{
-		isChppoing = false;
-	}
+	if (chkP == ChkPlayer::FirstP)
+		PlayFirstP(dt);
+	else if (chkP == ChkPlayer::SecondP)
+		PlaySecondP(dt);
 }
 
 void Player::Draw(sf::RenderWindow& window)
@@ -152,7 +131,70 @@ void Player::Draw(sf::RenderWindow& window)
 	}
 }
 
-void Player::SetSceneGame(SceneDev1* scene)
+void Player::SetChkP(ChkPlayer chk)
+{
+	chkP = chk;
+}
+
+void Player::PlayFirstP(float dt)
+{
+	if (InputMgr::GetKeyDown(sf::Keyboard::Left))
+	{
+		isChppoing = true;
+		SetSide(Sides::Left);
+		sceneGame->OnChop(Sides::Left, chkP);
+		sfxChop.play();
+	}
+
+	if (InputMgr::GetKeyUp(sf::Keyboard::Left))
+	{
+		isChppoing = false;
+	}
+
+	if (InputMgr::GetKeyDown(sf::Keyboard::Right))
+	{
+		isChppoing = true;
+		SetSide(Sides::Right);
+		sceneGame->OnChop(Sides::Right, chkP);
+		sceneGame->OnChop(Sides::Left, chkP);
+	}
+
+	if (InputMgr::GetKeyUp(sf::Keyboard::Right))
+	{
+		isChppoing = false;
+	}
+}
+
+void Player::PlaySecondP(float dt)
+{
+	if (InputMgr::GetKeyDown(sf::Keyboard::A))
+	{
+		isChppoing = true;
+		SetSide(Sides::Left);
+		sceneGame->OnChop(Sides::Left, chkP);
+		sfxChop.play();
+	}
+
+	if (InputMgr::GetKeyUp(sf::Keyboard::A))
+	{
+		isChppoing = false;
+	}
+
+	if (InputMgr::GetKeyDown(sf::Keyboard::D))
+	{
+		isChppoing = true;
+		SetSide(Sides::Right);
+		sceneGame->OnChop(Sides::Right, chkP);
+		sceneGame->OnChop(Sides::Left, chkP);
+	}
+
+	if (InputMgr::GetKeyUp(sf::Keyboard::D))
+	{
+		isChppoing = false;
+	}
+}
+
+void Player::SetSceneGame(Scene* scene)
 {
 	sceneGame = scene;
 }

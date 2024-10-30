@@ -117,6 +117,11 @@ int Scene::FindGoAll(const std::string& name, std::list<GameObject*>& list)
 	return list.size();
 }
 
+void Scene::OnChop(Sides side, ChkPlayer chk)
+{
+
+}
+
 void Scene::ApplyAddGo()
 {
 	for (auto go : addGameObjects)

@@ -2,6 +2,7 @@
 #include "GameObject.h"
 
 class SceneDev1;
+class VsScene;
 
 class Player : public GameObject
 {
@@ -29,7 +30,9 @@ protected:
 	bool isAlive = true;
 	bool isChppoing = false;
 
-	SceneDev1* sceneGame = nullptr;
+	ChkPlayer chkP = ChkPlayer::FirstP;
+
+	Scene* sceneGame = nullptr;
 
 public:
 	Player(const std::string& name = "");
@@ -51,6 +54,10 @@ public:
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow& window)  override;
 
-	void SetSceneGame(SceneDev1* scene);
+	void SetChkP(ChkPlayer chk);
+	void PlayFirstP(float dt);
+	void PlaySecondP(float dt);
+
+	void SetSceneGame(Scene* scene);
 };
 

@@ -30,6 +30,8 @@ protected:
 	bool isAlive = true;
 	bool isChppoing = false;
 
+	int HP = 3;
+
 	ChkPlayer chkP = ChkPlayer::FirstP;
 
 	Scene* sceneGame = nullptr;
@@ -59,5 +61,9 @@ public:
 	void PlaySecondP(float dt);
 
 	void SetSceneGame(Scene* scene);
+
+	int GetHp() { return HP; }
+
+	void Hit() { HP--; }
 };
 

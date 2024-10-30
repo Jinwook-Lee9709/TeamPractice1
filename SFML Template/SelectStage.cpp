@@ -106,3 +106,8 @@ void SelectStage::SetVisibleCenterMessage(bool visible)
 {
 	centerMsg->SetActive(visible);
 }
+
+void SelectStage::GetBackgroundFile(const std::string& file)
+{
+
+}

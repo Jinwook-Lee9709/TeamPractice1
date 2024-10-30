@@ -34,5 +34,7 @@ public:
 
 	void SetCenterMessage(const std::string& msg);
 	void SetVisibleCenterMessage(bool visible);
+
+	void GetBackgroundFile(const std::string& file);
 };
 

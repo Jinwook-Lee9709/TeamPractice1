@@ -5,6 +5,7 @@ Button::Button(const std::string& fontId, const std::string& name)
 	:GameObject(name), fontId(fontId)
 {
 	text.setFont(FONT_MGR.Get(fontId));
+	text.setString("asd");
 	rect.setSize({ 370.f, 180.f });
 }
 
@@ -24,6 +25,7 @@ void Button::SetScale(const sf::Vector2f& scale)
 
 void Button::Reset()
 {
+	text.setFont(FONT_MGR.Get(fontId));
 	rect.setFillColor(sf::Color::Transparent);
 	text.setFillColor(ColorIdle);
 }

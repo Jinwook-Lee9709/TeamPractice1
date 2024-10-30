@@ -12,13 +12,12 @@ SceneTitle::SceneTitle() : Scene(SceneIds::Title)
 void SceneTitle::Init()
 {
 	FONT_MGR.Load("fonts/KOMIKAP_.ttf");
-	std::cout << "SceneDev2::Init()" << std::endl;
 
 	auto* obj = AddGo(new SpriteGo("graphics/titlebackground.png"));
 	startBtn = AddGo(new Button("fonts/KOMIKAP_.ttf"));
 	quitBtn = AddGo(new Button("fonts/KOMIKAP_.ttf"));
-	Scene::Init();
 
+	Scene::Init();
 
 	obj->sortingLayer = SortingLayers::Background;
 	obj->sortingOrder = -1;
@@ -47,7 +46,6 @@ void SceneTitle::Init()
 
 void SceneTitle::Enter()
 {
-	std::cout << "SceneDev2::Enter()" << std::endl;
 
 	TEXTURE_MGR.Load("graphics/titlebackground.png");
 	FONT_MGR.Load("fonts/KOMIKAP_.ttf");
@@ -57,11 +55,10 @@ void SceneTitle::Enter()
 
 void SceneTitle::Exit()
 {
-	std::cout << "SceneDev2::Exit()" << std::endl;
 
 	Scene::Exit();
 
-	TEXTURE_MGR.Unload("graphics/Background.png");
+	TEXTURE_MGR.Unload("graphics/titlebackground.png");
 	FONT_MGR.Unload("fonts/KOMIKAP_.ttf");
 }
 
@@ -84,7 +81,7 @@ void SceneTitle::Update(float dt)
 	if (InputMgr::GetMouseButtonUp(sf::Mouse::Left)) {
 		if (startBtn->IsCursorOn()) {
 			startBtnPressed = false;
-			SCENE_MGR.ChangeScene(SceneIds::VsScene);
+			SCENE_MGR.ChangeScene(SceneIds::Select);
 		}
 		else if (quitBtn->IsCursorOn()) {
 			quitBtnPressed = false;

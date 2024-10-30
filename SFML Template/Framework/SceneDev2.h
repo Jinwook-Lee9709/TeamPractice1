@@ -1,9 +1,13 @@
 #pragma once
 #include "Scene.h"
+
+class Button;
+
 class SceneDev2 : public Scene
 {
 protected:
-
+	Button* startBtn;
+	Button* quitBtn;
 public:
 	SceneDev2();
 	~SceneDev2() = default;

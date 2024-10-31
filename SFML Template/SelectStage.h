@@ -18,7 +18,8 @@ public:
 protected:
 	Status currentStatus = Status::Awake;
 
-	std::string BackGroundtexId;
+	std::string BackGround1TexId = "graphics/background.png";
+	std::string BackGround2TexId = "graphics/background.png";
 
 	TextGo* centerMsg;
 
@@ -42,7 +43,5 @@ public:
 
 	void SetCenterMessage(const std::string& msg);
 	void SetVisibleCenterMessage(bool visible);
-
-	void GetBackgroundTexId(const std::string& texId);
 };
 

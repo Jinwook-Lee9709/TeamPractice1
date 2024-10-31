@@ -20,4 +20,9 @@ void UiScore::SetScore(int score)
 	SetOrigin(originPreset);
 }
 
+void UiScore::SetString(const std::string& str)
+{
+	textFormat = str;
+}
+
 

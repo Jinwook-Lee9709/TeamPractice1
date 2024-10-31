@@ -12,5 +12,6 @@ public:
 
 	void Reset();
 	void SetScore(int score);
+	void SetString(const std::string& str);
 };
 

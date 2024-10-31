@@ -29,11 +29,16 @@ protected:
 
 	TextGo* centerMsg;
 	UiScore* uiScore;
+	UiScore* uiScore2;
 	UiTimebar* uiTimer;
 
+	GameObject* spriteHeartP1[3];
+	GameObject* spriteHeartP2[3];
+
 	int score = 0;
+	int score2 = 0;
 	float timer = 0.f;
-	float gameTime = 5.f;
+	float gameTime = 10.f;
 
 	sf::Sound sfxDeath;
 	sf::Sound sfxTimeOut;
@@ -57,12 +62,15 @@ public:
 	void SetVisibleCenterMessage(bool visible);
 
 	void SetScore(int score);
+	void SetScore2P(int score);
 
 	void SetStatus(Status newStatus);
 	void UpdateAwake(float dt);
 	void UpdateGame(float dt);
 	void UpdateGameOver(float dt);
 	void UpdatePause(float dt);
+
+	void CheckWinner();
 
 	void OnChop(Sides side, ChkPlayer chk) override;
 

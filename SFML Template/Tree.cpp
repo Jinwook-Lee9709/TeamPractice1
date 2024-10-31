@@ -123,10 +123,11 @@ void Tree::SetScale(const sf::Vector2f& scale)
 {
 	GameObject::SetScale(scale);
 	tree.setScale(this->scale);
-	for (auto branch : branches)
-	{
-		branch->SetScale(scale);
-	}
+}
+
+void Tree::SetModSize(sf::Vector2f size)
+{
+	ModLogSize = size;
 }
 
 void Tree::ClearEffectLog()
@@ -146,8 +147,9 @@ Sides Tree::Chop(Sides side)
 		EffectLog* effect = effectLogPool.Take();
 		SCENE_MGR.GetCurrentScene()->AddGo(effect);
 		effect->SetOrigin(Origins::BC);
+		effect->SetScale(ModLogSize);
 		effect->SetPosition(position);
-		effect->Fire({ side == Sides::Right ? -1000.f : 1000.f, -1000.f });
+		effect->Fire({ side == Sides::Right ? -500.f : 500.f, -700.f });
 		logEffects.push_back(effect);
 	}
 

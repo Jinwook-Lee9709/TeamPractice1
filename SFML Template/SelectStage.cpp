@@ -82,6 +82,29 @@ void SelectStage::Update(float dt)
 	{
 		SCENE_MGR.ChangeScene(SceneIds::Dev2);
 	}
+
+	if (InputMgr::GetMouseButtonDown(sf::Mouse::Left)) {
+		if (stage1Btn->IsCursorOn()) {
+			stage1BtnPressed = true;
+		}
+		if (stage2Btn->IsCursorOn()) {
+			stage2BtnPressed = true;
+		}
+	}
+	if (InputMgr::GetMouseButtonUp(sf::Mouse::Left)) {
+		if (stage2Btn->IsCursorOn()) {
+			stage1BtnPressed = false;
+			SCENE_MGR.ChangeScene(SceneIds::Select);
+		}
+		else if (stage2Btn->IsCursorOn()) {
+			stage2BtnPressed = false;
+			//FRAMEWORK.GetWindow().close();
+		}
+		else {
+			stage1BtnPressed = false;
+			stage2BtnPressed = false;
+		}
+	}
 }
 
 void SelectStage::Draw(sf::RenderWindow& window)
@@ -123,9 +146,4 @@ void SelectStage::SetCenterMessage(const std::string& msg)
 void SelectStage::SetVisibleCenterMessage(bool visible)
 {
 	centerMsg->SetActive(visible);
-}
-
-void SelectStage::GetBackgroundTexId(const std::string& texId)
-{
-
 }

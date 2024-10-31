@@ -32,6 +32,9 @@ protected:
 	UiScore* uiScore2;
 	UiTimebar* uiTimer;
 
+	GameObject* spriteHeartP1[3];
+	GameObject* spriteHeartP2[3];
+
 	int score = 0;
 	int score2 = 0;
 	float timer = 0.f;

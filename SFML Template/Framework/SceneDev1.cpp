@@ -29,11 +29,18 @@ void SceneDev1::Init()
 		cloud->sortingOrder = 0;
 	}
 
+	for (int i = 0; i < 3; ++i)
+	{
+		spriteHeart[i] = AddGo(new SpriteGo(texIdHeart));
+		spriteHeart[i]->sortingLayer = SortingLayers::Foreground;
+	}
+
 	TEXTURE_MGR.Load("graphics/tree.png");
 	TEXTURE_MGR.Load("graphics/branch.png");
 	TEXTURE_MGR.Load("graphics/player.png");
 	TEXTURE_MGR.Load("graphics/rip.png");
 	TEXTURE_MGR.Load("graphics/axe.png");
+	TEXTURE_MGR.Load("graphics/heart.png");
 
 	tree = AddGo(new Tree("Tree"));
 	player = AddGo(new Player("Player"));
@@ -49,6 +56,16 @@ void SceneDev1::Init()
 	tree->SetPosition({ 1920.f / 2, 1080.f - 200.f });
 	player->SetPosition({ 1920.f / 2, 1080.f - 200.f });
 
+	sf::Vector2f newHeartPos = spriteHeart[0]->GetPosition();
+
+	for (int i = 0; i < 3; ++i)
+	{
+		spriteHeart[i]->SetOrigin(Origins::MC);
+		spriteHeart[i]->SetScale({ 0.1f, 0.1f });
+		spriteHeart[i]->SetPosition({ newHeartPos.x + 600.f, newHeartPos.y + 950.f });
+		newHeartPos.x += 100.f;
+	}
+
 	centerMsg->text.setCharacterSize(100);
 	centerMsg->text.setFillColor(sf::Color::White);
 	centerMsg->SetPosition({ 1920.f / 2.f, 1080.f / 2.f });
@@ -59,9 +76,9 @@ void SceneDev1::Init()
 	uiScore->text.setFillColor(sf::Color::White);
 	uiScore->SetPosition({ 30.f, 30.f });
 
-	uiTimer->Set({ 500.f, 100.f }, sf::Color::Red);
+	uiTimer->Set({ 500.f, 50.f }, sf::Color::Red);
 	uiTimer->SetOrigin(Origins::ML);
-	uiTimer->SetPosition({ 1920.f / 2.f - 250.f, 1080.f - 100.f });
+	uiTimer->SetPosition({ 1920.f / 2.f, 1080.f - 125.f });
 }
 
 void SceneDev1::Enter()
@@ -74,6 +91,7 @@ void SceneDev1::Enter()
 	TEXTURE_MGR.Load("graphics/player.png");
 	TEXTURE_MGR.Load("graphics/rip.png");
 	TEXTURE_MGR.Load("graphics/axe.png");
+	TEXTURE_MGR.Load("graphics/heart.png");
 	FONT_MGR.Load("fonts/KOMIKAP_.ttf");
 	SOUNDBUFFER_MGR.Load("sound/chop.wav");
 	SOUNDBUFFER_MGR.Load(sbIdDeath);
@@ -85,7 +103,7 @@ void SceneDev1::Enter()
 	player->SetSceneGame(this);
 
 	Scene::Enter();
-	 
+
 	SetStatus(Status::Awake);
 }
 
@@ -107,6 +125,7 @@ void SceneDev1::Exit()
 	TEXTURE_MGR.Unload("graphics/player.png");
 	TEXTURE_MGR.Unload("graphics/rip.png");
 	TEXTURE_MGR.Unload("graphics/axe.png");
+	TEXTURE_MGR.Unload("graphics/heart.png");
 	FONT_MGR.Unload("fonts/KOMIKAP_.ttf");
 	SOUNDBUFFER_MGR.Unload("sound/chop.wav");
 	SOUNDBUFFER_MGR.Unload("sound/death.wav");
@@ -188,6 +207,11 @@ void SceneDev1::SetStatus(Status newStatus)
 			SetScore(score);
 			uiTimer->SetValue(1.f);
 
+			for (int i = 0; i < 3; ++i)
+			{
+				spriteHeart[i]->SetActive(true);
+			}
+
 			player->Reset();
 			tree->Reset();
 		}
@@ -256,15 +280,20 @@ void SceneDev1::OnChop(Sides side, ChkPlayer chk)
 	Sides branchSide = tree->Chop(side);
 	if (player->GetSide() == branchSide)
 	{
-		sfxDeath.play();
+		player->Hit();
+		spriteHeart[player->GetHp()]->SetActive(false);
+		if (player->GetHp() == 0)
+		{
+			sfxDeath.play();
 
-		player->OnDie();
-		SetCenterMessage("You Die!");
-		SetStatus(Status::GameOver);
+			player->OnDie();
+			SetCenterMessage("You Die!");
+			SetStatus(Status::GameOver);
+		}
 	}
 	else
 	{
 		SetScore(score + 100);
-		timer += 1.f;
+		timer += 0.2f;
 	}
 }

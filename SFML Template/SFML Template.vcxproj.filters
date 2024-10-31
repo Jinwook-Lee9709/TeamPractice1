@@ -25,6 +25,8 @@
     <ClCompile Include="Framework\Utils.cpp" />
     <ClCompile Include="VsScene.cpp" />
     <ClCompile Include="Variables.cpp" />
+    <ClCompile Include="SpriteButton.cpp" />
+    <ClCompile Include="SelectPlate.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Branch.h" />
@@ -112,9 +114,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="SelectStage.cpp">
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="VsScene.cpp">
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="Framework\Button.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -124,6 +126,8 @@
     <ClCompile Include="SceneTitle.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClInclude Include="SpriteButton.h" />
+    <ClInclude Include="SelectPlate.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\InputMgr.h">
@@ -193,9 +197,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="SelectStage.h">
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="VsScene.h">
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="Framework\Button.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>

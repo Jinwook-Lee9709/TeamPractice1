@@ -2,6 +2,7 @@
 #include "SelectStage.h"
 #include "SpriteGo.h"
 #include "TextGo.h"
+#include "Button.h"
 
 SelectStage::SelectStage() : Scene(SceneIds::SelectStage)
 {
@@ -21,11 +22,28 @@ void SelectStage::Init()
 	centerMsg = AddGo(new TextGo("fonts/KOMIKAP_.ttf", "Center Maessage"));
 	centerMsg->sortingLayer = SortingLayers::UI;
 
+	stage1Btn = AddGo(new Button("fonts/KOMIKAP_.ttf"));
+	stage2Btn = AddGo(new Button("fonts/KOMIKAP_.ttf"));
+
 	Scene::Init();
 
 	centerMsg->text.setCharacterSize(100);
 	centerMsg->text.setFillColor(sf::Color::White);
 	centerMsg->SetPosition({ 1920.f / 2.f, 1080.f / 2.f - 400.f });
+
+	stage1Btn->sortingLayer = SortingLayers::UI;
+	stage1Btn->sortingOrder = 0;
+	stage1Btn->SetPosition({ 1920.f * 0.5f - 300.f, 1080.f * 0.5f });
+	stage1Btn->SetFontSize(100);
+	stage1Btn->SetOrigin(Origins::MC);
+	stage1Btn->SetText("STAGE1");
+
+	stage2Btn->sortingLayer = SortingLayers::UI;
+	stage2Btn->sortingOrder = 0;
+	stage2Btn->SetPosition({ 1920.f * 0.5f + 300.f, 1080.f * 0.5f });
+	stage2Btn->SetFontSize(100);
+	stage2Btn->SetOrigin(Origins::MC);
+	stage2Btn->SetText("STAGE2");
 }
 
 void SelectStage::Enter()
@@ -63,6 +81,29 @@ void SelectStage::Update(float dt)
 	if (InputMgr::GetKeyDown(sf::Keyboard::Num2))
 	{
 		SCENE_MGR.ChangeScene(SceneIds::Dev2);
+	}
+
+	if (InputMgr::GetMouseButtonDown(sf::Mouse::Left)) {
+		if (stage1Btn->IsCursorOn()) {
+			stage1BtnPressed = true;
+		}
+		if (stage2Btn->IsCursorOn()) {
+			stage2BtnPressed = true;
+		}
+	}
+	if (InputMgr::GetMouseButtonUp(sf::Mouse::Left)) {
+		if (stage2Btn->IsCursorOn()) {
+			stage1BtnPressed = false;
+			SCENE_MGR.ChangeScene(SceneIds::Select);
+		}
+		else if (stage2Btn->IsCursorOn()) {
+			stage2BtnPressed = false;
+			//FRAMEWORK.GetWindow().close();
+		}
+		else {
+			stage1BtnPressed = false;
+			stage2BtnPressed = false;
+		}
 	}
 }
 

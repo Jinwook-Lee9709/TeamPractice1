@@ -167,6 +167,11 @@
     <ClCompile Include="SelectStage.cpp" />
     <ClCompile Include="SceneSelect.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
+    <ClCompile Include="SelectPlate.cpp" />
+    <ClCompile Include="SelectStage.cpp" />
+    <ClCompile Include="SceneSelect.cpp" />
+    <ClCompile Include="SceneTitle.cpp" />
+    <ClCompile Include="SpriteButton.cpp" />
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="UiScore.cpp" />
     <ClCompile Include="UiTimebar.cpp" />
@@ -197,6 +202,11 @@
     <ClInclude Include="SelectStage.h" />
     <ClInclude Include="SceneSelect.h" />
     <ClInclude Include="SceneTitle.h" />
+    <ClInclude Include="SelectPlate.h" />
+    <ClInclude Include="SelectStage.h" />
+    <ClInclude Include="SceneSelect.h" />
+    <ClInclude Include="SceneTitle.h" />
+    <ClInclude Include="SpriteButton.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="UiScore.h" />
     <ClInclude Include="UiTimebar.h" />

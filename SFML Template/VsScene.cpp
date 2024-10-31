@@ -34,6 +34,7 @@ void VsScene::Init()
 	TEXTURE_MGR.Load("graphics/player.png");
 	TEXTURE_MGR.Load("graphics/rip.png");
 	TEXTURE_MGR.Load("graphics/axe.png");
+	TEXTURE_MGR.Load("graphics/heart.png");
 
 	tree = AddGo(new Tree("Tree"));
 	player = AddGo(new Player("Player"));
@@ -41,6 +42,15 @@ void VsScene::Init()
 	tree2 = AddGo(new Tree("Tree2"));
 	player2 = AddGo(new Player("Player2"));
 	
+
+	for (int i = 0; i < 3; i++)
+	{
+		spriteHeartP1[i] = AddGo(new SpriteGo("graphics/heart.png"));
+		spriteHeartP2[i] = AddGo(new SpriteGo("graphics/heart.png"));
+
+		spriteHeartP1[i]->sortingLayer = SortingLayers::Foreground;
+		spriteHeartP2[i]->sortingLayer = SortingLayers::Foreground;
+	}
 
 	centerMsg = AddGo(new TextGo("fonts/KOMIKAP_.ttf", "Center Message"));
 	centerMsg->sortingLayer = SortingLayers::UI;
@@ -67,6 +77,21 @@ void VsScene::Init()
 	player2->SetChkP(ChkPlayer::SecondP);
 	player2->SetPlayerTextId(VAR.Player2TexId);
 
+	sf::Vector2f newHeartP1Pos = sf::Vector2f({50.f, 1080.f / 2 + 100.f});
+
+	for (int i = 0; i < 3; i++)
+	{
+		spriteHeartP1[i]->SetOrigin(Origins::MC);
+		spriteHeartP1[i]->SetScale({ 0.1f, 0.1f });
+		spriteHeartP1[i]->SetPosition({ newHeartP1Pos.x, newHeartP1Pos.y });
+		
+		spriteHeartP2[i]->SetOrigin(Origins::MC);
+		spriteHeartP2[i]->SetScale({ 0.1f, 0.1f });
+		spriteHeartP2[i]->SetPosition({ newHeartP1Pos.x + 1800.f, newHeartP1Pos.y });
+
+		newHeartP1Pos.y += 100.f;
+	}
+
 	centerMsg->text.setCharacterSize(100);
 	centerMsg->text.setFillColor(sf::Color::White);
 	centerMsg->SetPosition({ 1920.f / 2.f, 1080.f / 2.f });
@@ -81,8 +106,9 @@ void VsScene::Init()
 	uiScore2->SetPosition({ 1890.f, 30.f });
 
 	uiTimer->Set({ 500.f, 100.f }, sf::Color::Red);
+	//uiTimer->Set({ 600.f, 80.f }, sf::Color::Red);
 	uiTimer->SetOrigin(Origins::ML);
-	uiTimer->SetPosition({ 1920.f / 2.f - 250.f, 1080.f - 100.f });
+	uiTimer->SetPosition({ 1920.f / 2.f - 350.f, 1080.f - 125.f });
 }
 
 void VsScene::Enter()
@@ -96,7 +122,7 @@ void VsScene::Enter()
 	TEXTURE_MGR.Load(VAR.Player2TexId);
 	TEXTURE_MGR.Load("graphics/rip.png");
 	TEXTURE_MGR.Load("graphics/axe.png");
-	FONT_MGR.Load("fonts/KOMIKAP_.ttf");
+	TEXTURE_MGR.Load("graphics/heart.png");
 	SOUNDBUFFER_MGR.Load("sound/chop.wav");
 	SOUNDBUFFER_MGR.Load(sbIdDeath);
 	SOUNDBUFFER_MGR.Load(sbIdTimeOut);
@@ -132,7 +158,7 @@ void VsScene::Exit()
 	TEXTURE_MGR.Unload("graphics/player.png");
 	TEXTURE_MGR.Unload("graphics/rip.png");
 	TEXTURE_MGR.Unload("graphics/axe.png");
-	FONT_MGR.Unload("fonts/KOMIKAP_.ttf");
+	TEXTURE_MGR.Unload("graphics/heart.png");
 	SOUNDBUFFER_MGR.Unload("sound/chop.wav");
 	SOUNDBUFFER_MGR.Unload("sound/death.wav");
 	SOUNDBUFFER_MGR.Unload("sound/out_of_time.wav");
@@ -316,11 +342,16 @@ void VsScene::OnChop(Sides side, ChkPlayer chk)
 		}
 		if (player->GetSide() == branchSide)
 		{
-			sfxDeath.play();
+			player->HitP1();
+			spriteHeartP1[player->GetP1HP()]->SetActive(false);
+			if(player->GetP1HP() == 0)
+			{
+				sfxDeath.play();
 
-			player->OnDie();
-			CheckWinner();
-			SetStatus(Status::GameOver);
+				player->OnDie();
+				CheckWinner();
+				SetStatus(Status::GameOver);
+			}
 		}
 		else
 		{
@@ -340,11 +371,16 @@ void VsScene::OnChop(Sides side, ChkPlayer chk)
 		}
 		if (player2->GetSide() == branchSide)
 		{
-			sfxDeath.play();
+			player2->HitP2();
+			spriteHeartP2[player2->GetP2HP()]->SetActive(false);
+			if(player2->GetP2HP() == 0)
+			{
+				sfxDeath.play();
 
-			player2->OnDie();
-			CheckWinner();
-			SetStatus(Status::GameOver);
+				player2->OnDie();
+				CheckWinner();
+				SetStatus(Status::GameOver);
+			}
 		}
 		else
 		{

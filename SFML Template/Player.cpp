@@ -102,6 +102,10 @@ void Player::Reset()
 	SetPosition(position);
 	SetScale({ 1.f, 1.f });
 	SetSide(Sides::Right);
+
+	HP = 3;
+	P1HP = 3;
+	P2HP = 3;
 }
 
 

@@ -21,6 +21,8 @@ public:
 protected:
 	Status currentStatus = Status::Awake;
 
+	GameObject* spriteHeart[3];
+
 	Tree* tree;
 	Player* player;
 
@@ -32,11 +34,12 @@ protected:
 
 	int score = 0;
 	float timer = 0.f;
-	float gameTime = 5.f;
+	float gameTime = 3.f;
 
 	sf::Sound sfxDeath;
 	sf::Sound sfxTimeOut;
 
+	std::string texIdHeart = "graphics/heart.png";
 	std::string sbIdDeath = "sound/death.wav";
 	std::string sbIdTimeOut = "sound/out_of_time.wav";
 

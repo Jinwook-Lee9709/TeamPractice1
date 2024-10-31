@@ -13,11 +13,11 @@ void Branch::SetSide(Sides side)
 	{
 	case Sides::Left:
 		SetActive(true);
-		SetScale({ -1.f, 1.f });
+		SetScale({ -0.7f, 1.f });
 		break;
 	case Sides::Right:
 		SetActive(true);
-		SetScale({ 1.f , 1.f });
+		SetScale({ 0.7f , 1.f });
 		break;
 	default:
 		SetActive(false);

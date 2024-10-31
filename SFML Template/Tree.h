@@ -19,6 +19,8 @@ protected:
 	ObjectPool<EffectLog> effectLogPool;
 	std::list<EffectLog*> logEffects;
 
+	sf::Vector2f ModLogSize = { 1.f, 1.f};
+
 public:
 	Tree(const std::string& name = "");
 	~Tree();
@@ -38,6 +40,8 @@ public:
 
 	void SetPosition(const sf::Vector2f& pos) override;
 	void SetScale(const sf::Vector2f& scale) override;
+
+	void SetModSize(sf::Vector2f size);
 
 	void ClearEffectLog();
 };

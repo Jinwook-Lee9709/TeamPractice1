@@ -9,7 +9,7 @@ class SceneMgr : public Singleton<SceneMgr>
 protected:
 	std::vector<Scene*> scenes;
 
-	SceneIds startScene = SceneIds::Title;
+	SceneIds startScene = SceneIds::VsScene;
 	SceneIds currentScene;
 
 	SceneIds nextScene = SceneIds::None;

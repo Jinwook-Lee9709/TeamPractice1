@@ -10,10 +10,10 @@ class Variables :
     Variables& operator=(const Variables& other) = delete;
 
 public:
-    std::string Player1TexId;
-    std::string Player2TexId;
+    std::string Player1TexId = "graphics/player.png";
+    std::string Player2TexId = "graphics/player.png";
     
-    std::string BackGroundTexId;
+    std::string BackGroundTexId = "graphics/background.png";
 
     PlayMode SelectedPlayMode;
 

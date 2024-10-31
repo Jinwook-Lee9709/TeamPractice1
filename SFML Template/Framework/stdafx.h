@@ -16,6 +16,7 @@
 #include "Framework.h"
 #include "InputMgr.h"
 #include "ResourceMgr.h"
+#include "Variables.h"
 #include "GameObject.h"
 #include "SceneMgr.h"
 #include "ObjectPool.h"

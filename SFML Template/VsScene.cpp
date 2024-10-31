@@ -56,9 +56,9 @@ void VsScene::Init()
 	centerMsg->sortingLayer = SortingLayers::UI;
 
 	uiScore = AddGo(new UiScore("fonts/KOMIKAP_.ttf", "Ui Score"));
-	uiScore->SetString("1P Score: ");
+	
 	uiScore2 = AddGo(new UiScore("fonts/KOMIKAP_.ttf", "Ui Score2"));
-	uiScore2->SetString("2P Score: ");
+	
 	uiTimer = AddGo(new UiTimebar("Ui Timer"));
 
 	Scene::Init();
@@ -99,11 +99,13 @@ void VsScene::Init()
 	uiScore->text.setCharacterSize(75);
 	uiScore->text.setFillColor(sf::Color::White);
 	uiScore->SetPosition({ 30.f, 30.f });
+	uiScore->SetString("1P Score: ");
 
 	uiScore2->text.setCharacterSize(75);
 	uiScore2->text.setFillColor(sf::Color::White);
 	uiScore2->SetOrigin(Origins::TR);
 	uiScore2->SetPosition({ 1890.f, 30.f });
+	uiScore2->SetString("2P Score: ");
 
 	uiTimer->Set({ 500.f, 100.f }, sf::Color::Red);
 	//uiTimer->Set({ 600.f, 80.f }, sf::Color::Red);
@@ -123,6 +125,7 @@ void VsScene::Enter()
 	TEXTURE_MGR.Load("graphics/rip.png");
 	TEXTURE_MGR.Load("graphics/axe.png");
 	TEXTURE_MGR.Load("graphics/heart.png");
+	FONT_MGR.Load("fonts/KOMIKAP_.ttf");
 	SOUNDBUFFER_MGR.Load("sound/chop.wav");
 	SOUNDBUFFER_MGR.Load(sbIdDeath);
 	SOUNDBUFFER_MGR.Load(sbIdTimeOut);
@@ -166,6 +169,7 @@ void VsScene::Exit()
 	TEXTURE_MGR.Unload("graphics/rip.png");
 	TEXTURE_MGR.Unload("graphics/axe.png");
 	TEXTURE_MGR.Unload("graphics/heart.png");
+	FONT_MGR.Unload("fonts/KOMIKAP_.ttf");
 	SOUNDBUFFER_MGR.Unload("sound/chop.wav");
 	SOUNDBUFFER_MGR.Unload("sound/death.wav");
 	SOUNDBUFFER_MGR.Unload("sound/out_of_time.wav");

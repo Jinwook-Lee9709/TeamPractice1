@@ -196,7 +196,10 @@
     <ClInclude Include="Framework\SpriteGo.h" />
     <ClInclude Include="Framework\stdafx.h" />
     <ClInclude Include="Framework\TextGo.h" />
+    <ClInclude Include="SceneSelect.h" />
+    <ClInclude Include="SceneTitle.h" />
     <ClInclude Include="SelectPlate.h" />
+    <ClInclude Include="SelectStage.h" />
     <ClInclude Include="SpriteButton.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="UiScore.h" />

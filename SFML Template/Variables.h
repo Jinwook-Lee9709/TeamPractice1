@@ -14,6 +14,7 @@ public:
     std::string Player2TexId = "graphics/player.png";
     
     std::string BackGroundTexId = "graphics/background.png";
+    std::string BranchTexId = "graphics/branch.png";
 
     PlayMode SelectedPlayMode;
 

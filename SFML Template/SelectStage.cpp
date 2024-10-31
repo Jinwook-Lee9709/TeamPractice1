@@ -83,12 +83,13 @@ void SelectStage::Update(float dt)
 	if (InputMgr::GetMouseButtonUp(sf::Mouse::Left)) {
 		if (stage1Btn->IsCursorOn()) {
 			stage1BtnPressed = false;
-			SCENE_MGR.ChangeScene(SceneIds::VsScene);
+			SCENE_MGR.ChangeScene(SceneIds::Dev1);
 		}
 		else if (stage2Btn->IsCursorOn()) 
 		{
 			stage2BtnPressed = false;
 			VAR.BackGroundTexId = "graphics/background2.png";
+			VAR.BranchTexId = "graphics/palmLeaf.png";
 			if(VAR.SelectedPlayMode == PlayMode::Single)
 			{
 				SCENE_MGR.ChangeScene(SceneIds::Dev1);

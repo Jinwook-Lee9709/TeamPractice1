@@ -6,9 +6,9 @@ private:
 	int playerNum;
 	sf::Sprite spriteSelect;
 	sf::Text text;
-	sf::Text Key[3]; // 0 = Left, 1 = Right, 2 = Middle
-	std::string p1Key[3] = {"A", "D", "Z"};
-	std::string p2Key[3] = { "LEFT", "RIGHT", "Enter" };
+	sf::Sprite Key[3]; // 0 = Left, 1 = Right, 2 = Middle
+	std::string p1Key[3] = {"graphics/keyA.png", "graphics/keyD.png", "graphics/keyZ.png"};
+	std::string p2Key[3] = { "graphics/keyLeft.png", "graphics/keyRight.png", "graphics/keyEnter.png" };
 	std::string fontId;
 
 	int fontSize = 60;

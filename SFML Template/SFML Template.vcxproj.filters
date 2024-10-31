@@ -48,8 +48,6 @@
     <ClInclude Include="Framework\SpriteGo.h" />
     <ClInclude Include="Framework\stdafx.h" />
     <ClInclude Include="Framework\TextGo.h" />
-    <ClInclude Include="SceneSelect.h" />
-    <ClInclude Include="SceneTitle.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="UiScore.h" />
     <ClInclude Include="UiTimebar.h" />
@@ -128,6 +126,9 @@
     </ClCompile>
     <ClInclude Include="SpriteButton.h" />
     <ClInclude Include="SelectPlate.h" />
+    <ClInclude Include="SceneSelect.h" />
+    <ClInclude Include="SceneTitle.h" />
+    <ClInclude Include="SelectStage.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\InputMgr.h">
@@ -195,8 +196,6 @@
     </ClInclude>
     <ClInclude Include="UiTimebar.h">
       <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="SelectStage.h">
     </ClInclude>
     <ClInclude Include="VsScene.h">
     </ClInclude>

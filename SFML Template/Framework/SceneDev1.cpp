@@ -36,7 +36,7 @@ void SceneDev1::Init()
 	}
 
 	TEXTURE_MGR.Load("graphics/tree.png");
-	TEXTURE_MGR.Load("graphics/branch.png");
+	TEXTURE_MGR.Load(VAR.BranchTexId);
 	TEXTURE_MGR.Load("graphics/player.png");
 	TEXTURE_MGR.Load("graphics/rip.png");
 	TEXTURE_MGR.Load("graphics/axe.png");
@@ -87,7 +87,7 @@ void SceneDev1::Enter()
 	TEXTURE_MGR.Load(VAR.BackGroundTexId);
 	TEXTURE_MGR.Load("graphics/cloud.png");
 	TEXTURE_MGR.Load("graphics/tree.png");
-	TEXTURE_MGR.Load("graphics/branch.png");
+	TEXTURE_MGR.Load(VAR.BranchTexId);
 	TEXTURE_MGR.Load("graphics/log.png");
 	TEXTURE_MGR.Load("graphics/player.png");
 	TEXTURE_MGR.Load("graphics/rip.png");
@@ -105,6 +105,8 @@ void SceneDev1::Enter()
 
 	sfxDeath.setBuffer(SOUNDBUFFER_MGR.Get(sbIdDeath));
 	sfxTimeOut.setBuffer(SOUNDBUFFER_MGR.Get(sbIdTimeOut));
+
+	tree->SetBranchTexid(VAR.BranchTexId);
 
 	player->SetSceneGame(this);
 
@@ -126,7 +128,7 @@ void SceneDev1::Exit()
 	TEXTURE_MGR.Unload("graphics/cloud.png");
 	TEXTURE_MGR.Unload(VAR.BackGroundTexId);
 	TEXTURE_MGR.Unload("graphics/tree.png");
-	TEXTURE_MGR.Unload("graphics/branch.png");
+	TEXTURE_MGR.Unload(VAR.BranchTexId);
 	TEXTURE_MGR.Unload("graphics/log.png");
 	TEXTURE_MGR.Unload("graphics/player.png");
 	TEXTURE_MGR.Unload("graphics/rip.png");

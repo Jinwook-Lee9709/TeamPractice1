@@ -31,6 +31,7 @@ void Tree::Init()
 	tree.setTexture(TEXTURE_MGR.Get(treeTexId), true);
 	Utils::SetOrigin(tree, Origins::BC);
 
+	branchTexId = VAR.BranchTexId;
 	sf::Vector2f orginBranch;
 	orginBranch.x = tree.getLocalBounds().width * -0.5f;
 	sf::Texture& branchTex = TEXTURE_MGR.Get(branchTexId);
@@ -69,6 +70,14 @@ void Tree::Reset()
 	tree.setTexture(TEXTURE_MGR.Get(treeTexId), true);
 	for (auto branch : branches)
 	{
+		if (VAR.SelectedPlayMode == PlayMode::Multi) {
+			if (branch->GetSide() == Sides::Left) {
+				branch->SetScale({ -0.7f, 1.f });
+			}
+			else if (branch->GetSide() == Sides::Right) {
+				branch->SetScale({ 0.7f, 1.f });
+			}
+		}
 		branch->Reset();
 	}
 	UpdateBranchPos();
@@ -130,6 +139,13 @@ void Tree::SetModSize(sf::Vector2f size)
 	ModLogSize = size;
 }
 
+void Tree::SetBranchTexid(const std::string& texid)
+{
+	branchTexId = texid;
+	for (auto branch : branches)
+		branch->ChangeTexture(branchTexId);
+}
+
 void Tree::ClearEffectLog()
 {
 	for (auto log : logEffects)
@@ -149,7 +165,11 @@ Sides Tree::Chop(Sides side)
 		effect->SetOrigin(Origins::BC);
 		effect->SetScale(ModLogSize);
 		effect->SetPosition(position);
-		effect->Fire({ side == Sides::Right ? -500.f : 500.f, -700.f });
+		if (VAR.SelectedPlayMode == PlayMode::Multi)
+			effect->Fire({ side == Sides::Right ? -500.f : 500.f, -700.f });
+		else
+			effect->Fire({ side == Sides::Right ? -1000.f : 1000.f, -1000.f });
+		
 		logEffects.push_back(effect);
 	}
 

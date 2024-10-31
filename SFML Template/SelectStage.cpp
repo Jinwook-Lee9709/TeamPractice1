@@ -95,6 +95,7 @@ void SelectStage::Update(float dt)
 		{
 			stage2BtnPressed = false;
 			VAR.BackGroundTexId = "graphics/background2.png";
+			VAR.BranchTexId = "graphics/palmLeaf.png";
 			if(VAR.SelectedPlayMode == PlayMode::Single)
 			{
 				SCENE_MGR.ChangeScene(SceneIds::Dev1);

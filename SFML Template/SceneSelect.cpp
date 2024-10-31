@@ -72,6 +72,13 @@ void SceneSelect::Enter()
 	TEXTURE_MGR.Load("graphics/player1.png");
 	TEXTURE_MGR.Load("graphics/player2.png");
 	TEXTURE_MGR.Load("graphics/player3.png");
+	TEXTURE_MGR.Load("graphics/keyA.png");
+	TEXTURE_MGR.Load("graphics/keyD.png");
+	TEXTURE_MGR.Load("graphics/keyZ.png");
+	TEXTURE_MGR.Load("graphics/keyLeft.png");
+	TEXTURE_MGR.Load("graphics/keyRight.png");
+	TEXTURE_MGR.Load("graphics/keyEnter.png");
+
 	TEXTURE_MGR.Load("graphics/selected.png");
 	FONT_MGR.Load("fonts/KOMIKAP_.ttf");
 
@@ -91,6 +98,14 @@ void SceneSelect::Exit()
 	TEXTURE_MGR.Unload("graphics/player2.png");
 	TEXTURE_MGR.Unload("graphics/player3.png");
 	TEXTURE_MGR.Unload("graphics/selected.png");
+	TEXTURE_MGR.Unload("graphics/keyA.png");
+	TEXTURE_MGR.Unload("graphics/keyD.png");
+	TEXTURE_MGR.Unload("graphics/keyZ.png");
+	TEXTURE_MGR.Unload("graphics/keyLeft.png");
+	TEXTURE_MGR.Unload("graphics/keyRight.png");
+	TEXTURE_MGR.Unload("graphics/keyEnter.png");
+
+	TEXTURE_MGR.Load("graphics/selected.png");
 	FONT_MGR.Unload("fonts/KOMIKAP_.ttf");
 }
 
@@ -113,6 +128,12 @@ void SceneSelect::Update(float dt)
 			
 			}
 			break;
+		case SceneSelect::Status::SelectCharacter:
+			if (currentStatus == Status::SelectMode)
+			{
+				single->SetActive(true);
+				multi->SetActive(true);
+			}
 		default:
 			break;
 		}
@@ -137,6 +158,10 @@ void SceneSelect::Update(float dt)
 
 void SceneSelect::UpdateSelectMode()
 {
+	if (InputMgr::GetKeyDown(sf::Keyboard::Escape)) {
+		SCENE_MGR.ChangeScene(SceneIds::Title);
+	}
+
 	if (InputMgr::GetMouseButtonDown(sf::Mouse::Left)) {
 		if (single->IsCursorOn()) {
 			singlePressed = true;
@@ -171,6 +196,13 @@ void SceneSelect::UpdateSelectMode()
 
 void SceneSelect::UpdateSelectCharacter()
 {
+	if (InputMgr::GetKeyDown(sf::Keyboard::Escape)) {
+		p1Plate->SetActive(false);
+		p2Plate->SetActive(false);
+		prevStatus = Status::SelectCharacter;
+		currentStatus = Status::SelectMode;
+	}
+
 	if (VAR.SelectedPlayMode == PlayMode::Single) {
 		if (p1Selected) {
 			VAR.Player1TexId = characterTexId[p1SpriteIndex];

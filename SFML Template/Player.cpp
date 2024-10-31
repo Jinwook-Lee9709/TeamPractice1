@@ -157,6 +157,11 @@ void Player::SetChkP(ChkPlayer chk)
 
 void Player::PlayFirstP(float dt)
 {
+	if (InputMgr::GetKeyDown(sf::Keyboard::F))
+	{
+
+	}
+
 	if (InputMgr::GetKeyDown(sf::Keyboard::A))
 	{
 		isChppoing = true;

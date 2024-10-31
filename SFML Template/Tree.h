@@ -12,7 +12,7 @@ protected:
 
 	int branchCount = 6;
 	std::string treeTexId = "graphics/tree.png";
-	std::string branchTexId = "graphics/branch.png";
+	std::string branchTexId = "graphics/palmLeaf.png";
 
 	float brachOffsetY = 150.f;
 
@@ -42,6 +42,7 @@ public:
 	void SetScale(const sf::Vector2f& scale) override;
 
 	void SetModSize(sf::Vector2f size);
+	void SetBranchTexid(const std::string& texid);
 
 	void ClearEffectLog();
 };

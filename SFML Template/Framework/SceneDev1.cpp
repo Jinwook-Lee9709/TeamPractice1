@@ -210,12 +210,13 @@ void SceneDev1::SetStatus(Status newStatus)
 			SetScore(score);
 			uiTimer->SetValue(1.f);
 
+			player->Reset();
+
 			for (int i = 0; i < 3; ++i)
 			{
 				spriteHeart[i]->SetActive(true);
 			}
 
-			player->Reset();
 			tree->Reset();
 		}
 		FRAMEWORK.SetTimeScale(1.f);
@@ -280,7 +281,6 @@ void SceneDev1::UpdatePause(float dt)
 
 void SceneDev1::OnChop(Sides side, ChkPlayer chk)
 {
-	std::random_device rd;
 	float randomnum = Utils::RandomValue();
 	Sides branchSide = tree->Chop(side);
 	if (player->GetSide() == branchSide)

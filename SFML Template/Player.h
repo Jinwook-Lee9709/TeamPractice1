@@ -46,11 +46,13 @@ public:
 	Sides GetSide() const { return side; }
 	void SetSide(Sides s);
 	void OnDie();
+	bool GetIsAlive() const { return isAlive; };
 
 	void SetPosition(const sf::Vector2f& pos) override;
 	void SetScale(const sf::Vector2f& scale) override;
 	void SetOrigin(Origins preset) override;
 	void SetOrigin(const sf::Vector2f& newOrigin) override;
+	void SetPlayerTextId(const std::string& texId);
 
 	void Init() override;
 	void Release() override;

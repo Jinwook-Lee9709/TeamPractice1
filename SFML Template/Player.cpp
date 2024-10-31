@@ -72,6 +72,11 @@ void Player::SetOrigin(const sf::Vector2f& newOrigin)
 	spritePlayer.setOrigin(origin);
 }
 
+void Player::SetPlayerTextId(const std::string& texId)
+{
+	texIdPlayer = texId;
+}
+
 void Player::Init()
 {
 	spritePlayer.setTexture(TEXTURE_MGR.Get(texIdPlayer));
@@ -142,34 +147,6 @@ void Player::SetChkP(ChkPlayer chk)
 
 void Player::PlayFirstP(float dt)
 {
-	if (InputMgr::GetKeyDown(sf::Keyboard::Left))
-	{
-		isChppoing = true;
-		SetSide(Sides::Left);
-		sceneGame->OnChop(Sides::Left, chkP);
-		sfxChop.play();
-	}
-
-	if (InputMgr::GetKeyUp(sf::Keyboard::Left))
-	{
-		isChppoing = false;
-	}
-
-	if (InputMgr::GetKeyDown(sf::Keyboard::Right))
-	{
-		isChppoing = true;
-		SetSide(Sides::Right);
-		sceneGame->OnChop(Sides::Right, chkP);
-	}
-
-	if (InputMgr::GetKeyUp(sf::Keyboard::Right))
-	{
-		isChppoing = false;
-	}
-}
-
-void Player::PlaySecondP(float dt)
-{
 	if (InputMgr::GetKeyDown(sf::Keyboard::A))
 	{
 		isChppoing = true;
@@ -191,6 +168,34 @@ void Player::PlaySecondP(float dt)
 	}
 
 	if (InputMgr::GetKeyUp(sf::Keyboard::D))
+	{
+		isChppoing = false;
+	}
+}
+
+void Player::PlaySecondP(float dt)
+{
+	if (InputMgr::GetKeyDown(sf::Keyboard::Left))
+	{
+		isChppoing = true;
+		SetSide(Sides::Left);
+		sceneGame->OnChop(Sides::Left, chkP);
+		sfxChop.play();
+	}
+
+	if (InputMgr::GetKeyUp(sf::Keyboard::Left))
+	{
+		isChppoing = false;
+	}
+
+	if (InputMgr::GetKeyDown(sf::Keyboard::Right))
+	{
+		isChppoing = true;
+		SetSide(Sides::Right);
+		sceneGame->OnChop(Sides::Right, chkP);
+	}
+
+	if (InputMgr::GetKeyUp(sf::Keyboard::Right))
 	{
 		isChppoing = false;
 	}

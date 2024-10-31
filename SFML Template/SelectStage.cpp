@@ -72,10 +72,7 @@ void SelectStage::Exit()
 void SelectStage::Update(float dt)
 {
 	Scene::Update(dt);
-	VAR.SelectedPlayMode == PlayMode::Single;
-
-	if (InputMgr::GetMouseButtonDown(sf::Mouse::Left)) 
-	{
+	if (InputMgr::GetMouseButtonDown(sf::Mouse::Left)) {
 		if (stage1Btn->IsCursorOn()) {
 			stage1BtnPressed = true;
 		}
@@ -83,20 +80,10 @@ void SelectStage::Update(float dt)
 			stage2BtnPressed = true;
 		}
 	}
-	if (InputMgr::GetMouseButtonUp(sf::Mouse::Left)) 
-	{
-		if (stage1Btn->IsCursorOn()) 
-		{
+	if (InputMgr::GetMouseButtonUp(sf::Mouse::Left)) {
+		if (stage1Btn->IsCursorOn()) {
 			stage1BtnPressed = false;
-			VAR.BackGroundTexId = "graphics/background.png";
-			if(VAR.SelectedPlayMode == PlayMode::Single)
-			{
-				SCENE_MGR.ChangeScene(SceneIds::Dev1);
-			}
-			else if (VAR.SelectedPlayMode == PlayMode::Multi)
-			{
-				SCENE_MGR.ChangeScene(SceneIds::VsScene);
-			}
+			SCENE_MGR.ChangeScene(SceneIds::VsScene);
 		}
 		else if (stage2Btn->IsCursorOn()) 
 		{

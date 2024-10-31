@@ -14,6 +14,7 @@ void SceneMgr::Init()
 	scenes.push_back(new SceneDev2());
 	scenes.push_back(new VsScene());
 	scenes.push_back(new SelectStage());
+	scenes.push_back(new VsScene());
 	scenes.push_back(new SceneTitle());
 	scenes.push_back(new SceneSelect());
 

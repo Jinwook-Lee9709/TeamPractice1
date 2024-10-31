@@ -16,7 +16,7 @@ void VsScene::Init()
 {
 	std::cout << "VsScene::Init()" << std::endl;
 
-	GameObject* obj = AddGo(new SpriteGo("graphics/background.png","background"));
+	GameObject* obj = AddGo(new SpriteGo("graphics/background.png", "background"));
 	obj->sortingLayer = SortingLayers::Background;
 	obj->sortingOrder = -1;
 	obj->SetOrigin(Origins::MC);
@@ -38,10 +38,10 @@ void VsScene::Init()
 
 	tree = AddGo(new Tree("Tree"));
 	player = AddGo(new Player("Player"));
-	
+
 	tree2 = AddGo(new Tree("Tree2"));
 	player2 = AddGo(new Player("Player2"));
-	
+
 
 	for (int i = 0; i < 3; i++)
 	{
@@ -56,9 +56,9 @@ void VsScene::Init()
 	centerMsg->sortingLayer = SortingLayers::UI;
 
 	uiScore = AddGo(new UiScore("fonts/KOMIKAP_.ttf", "Ui Score"));
-	
+
 	uiScore2 = AddGo(new UiScore("fonts/KOMIKAP_.ttf", "Ui Score2"));
-	
+
 	uiTimer = AddGo(new UiTimebar("Ui Timer"));
 
 	Scene::Init();
@@ -77,19 +77,19 @@ void VsScene::Init()
 	player2->SetChkP(ChkPlayer::SecondP);
 	player2->SetPlayerTextId(VAR.Player2TexId);
 
-	sf::Vector2f newHeartP1Pos = sf::Vector2f({50.f, 1080.f / 2 + 100.f});
+	sf::Vector2f newHeartP1Pos = sf::Vector2f({ 50.f, 1080.f / 2 + 300.f });
 
 	for (int i = 0; i < 3; i++)
 	{
 		spriteHeartP1[i]->SetOrigin(Origins::MC);
 		spriteHeartP1[i]->SetScale({ 0.1f, 0.1f });
 		spriteHeartP1[i]->SetPosition({ newHeartP1Pos.x, newHeartP1Pos.y });
-		
+
 		spriteHeartP2[i]->SetOrigin(Origins::MC);
 		spriteHeartP2[i]->SetScale({ 0.1f, 0.1f });
 		spriteHeartP2[i]->SetPosition({ newHeartP1Pos.x + 1800.f, newHeartP1Pos.y });
 
-		newHeartP1Pos.y += 100.f;
+		newHeartP1Pos.y -= 100.f;
 	}
 
 	centerMsg->text.setCharacterSize(100);
@@ -107,10 +107,10 @@ void VsScene::Init()
 	uiScore2->SetPosition({ 1890.f, 30.f });
 	uiScore2->SetString("2P Score: ");
 
-	uiTimer->Set({ 500.f, 100.f }, sf::Color::Red);
+	uiTimer->Set({ 900.f, 100.f }, sf::Color::Red);
 	//uiTimer->Set({ 600.f, 80.f }, sf::Color::Red);
 	uiTimer->SetOrigin(Origins::ML);
-	uiTimer->SetPosition({ 1920.f / 2.f - 350.f, 1080.f - 125.f });
+	uiTimer->SetPosition({ 1920.f / 2.f - 490.f, 1080.f - 125.f });
 }
 
 void VsScene::Enter()
@@ -258,6 +258,12 @@ void VsScene::SetStatus(Status newStatus)
 			tree->Reset();
 			player2->Reset();
 			tree2->Reset();
+
+			for (int i = 0; i < 3; i++)
+			{
+				spriteHeartP1[i]->SetActive(true);
+				spriteHeartP2[i]->SetActive(true);
+			}
 		}
 		FRAMEWORK.SetTimeScale(1.f);
 		SetVisibleCenterMessage(false);
@@ -329,15 +335,17 @@ void VsScene::CheckWinner()
 			SetCenterMessage("2Player Win!!!");
 		else
 			SetCenterMessage("Draw!!!");
-	} 
+	}
 	else
 	{
 		player->GetIsAlive() ? SetCenterMessage("1Player Win!!!") : SetCenterMessage("2Player Win!!!");
 	}
-}	
+}
 
 void VsScene::OnChop(Sides side, ChkPlayer chk)
 {
+	float randomnum = Utils::RandomValue();
+
 	if (chk == ChkPlayer::FirstP)
 	{
 		Sides branchSide = Sides::None;
@@ -349,7 +357,7 @@ void VsScene::OnChop(Sides side, ChkPlayer chk)
 		{
 			player->HitP1();
 			spriteHeartP1[player->GetP1HP()]->SetActive(false);
-			if(player->GetP1HP() == 0)
+			if (player->GetP1HP() == 0)
 			{
 				sfxDeath.play();
 
@@ -363,6 +371,11 @@ void VsScene::OnChop(Sides side, ChkPlayer chk)
 			if (timer > 0 && player->GetIsAlive() && player2->GetIsAlive())
 			{
 				SetScore(score + 100);
+				if (randomnum <= 0.05f)
+				{
+					player->RecoveryP1();
+					spriteHeartP1[player->GetP1HP() - 1]->SetActive(true);
+				}
 			}
 			//timer += 1.f;
 		}
@@ -378,7 +391,7 @@ void VsScene::OnChop(Sides side, ChkPlayer chk)
 		{
 			player2->HitP2();
 			spriteHeartP2[player2->GetP2HP()]->SetActive(false);
-			if(player2->GetP2HP() == 0)
+			if (player2->GetP2HP() == 0)
 			{
 				sfxDeath.play();
 
@@ -392,8 +405,12 @@ void VsScene::OnChop(Sides side, ChkPlayer chk)
 			if (timer > 0 && player->GetIsAlive() && player2->GetIsAlive())
 			{
 				SetScore2P(score2 + 100);
+				if (randomnum <= 0.05f)
+				{
+					player2->RecoveryP2();
+					spriteHeartP2[player2->GetP2HP() - 1]->SetActive(true);
+				}
 			}
-			
 			//timer += 1.f;
 		}
 	}

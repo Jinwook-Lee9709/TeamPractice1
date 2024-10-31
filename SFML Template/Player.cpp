@@ -99,6 +99,8 @@ void Player::Reset()
 	SetSide(Sides::Right);
 
 	HP = 3;
+	P1HP = 3;
+	P2HP = 3;
 }
 
 

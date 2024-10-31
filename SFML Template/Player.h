@@ -32,6 +32,9 @@ protected:
 
 	int HP = 3;
 
+	int P1HP = 3;
+	int P2HP = 3;
+
 	ChkPlayer chkP = ChkPlayer::FirstP;
 
 	Scene* sceneGame = nullptr;
@@ -63,7 +66,11 @@ public:
 	void SetSceneGame(Scene* scene);
 
 	int GetHp() { return HP; }
+	int GetP1HP() { return P1HP; }
+	int GetP2HP() { return P2HP; }
 
 	void Hit() { HP--; }
+	void HitP1() { P1HP--; }
+	void HitP2() { P2HP--; }
 };
 

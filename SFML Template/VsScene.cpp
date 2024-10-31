@@ -16,7 +16,7 @@ void VsScene::Init()
 {
 	std::cout << "VsScene::Init()" << std::endl;
 
-	GameObject* obj = AddGo(new SpriteGo("graphics/background.png"));
+	GameObject* obj = AddGo(new SpriteGo("graphics/background.png","background"));
 	obj->sortingLayer = SortingLayers::Background;
 	obj->sortingOrder = -1;
 	obj->SetOrigin(Origins::MC);
@@ -127,8 +127,15 @@ void VsScene::Enter()
 	SOUNDBUFFER_MGR.Load(sbIdDeath);
 	SOUNDBUFFER_MGR.Load(sbIdTimeOut);
 
+	auto it = dynamic_cast<SpriteGo*>(FindGo("background"));
+	it->ChangeTexture(VAR.BackGroundTexId);
+
 	sfxDeath.setBuffer(SOUNDBUFFER_MGR.Get(sbIdDeath));
 	sfxTimeOut.setBuffer(SOUNDBUFFER_MGR.Get(sbIdTimeOut));
+
+	player->SetPlayerTextId(VAR.Player1TexId);
+	player2->SetPlayerTextId(VAR.Player2TexId);
+
 
 	player->SetSceneGame(this);
 	player2->SetSceneGame(this);

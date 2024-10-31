@@ -83,7 +83,7 @@ void SelectStage::Update(float dt)
 	if (InputMgr::GetMouseButtonUp(sf::Mouse::Left)) {
 		if (stage1Btn->IsCursorOn()) {
 			stage1BtnPressed = false;
-			SCENE_MGR.ChangeScene(SceneIds::Dev1);
+			SCENE_MGR.ChangeScene(SceneIds::VsScene);
 		}
 		else if (stage2Btn->IsCursorOn()) {
 			stage2BtnPressed = false;

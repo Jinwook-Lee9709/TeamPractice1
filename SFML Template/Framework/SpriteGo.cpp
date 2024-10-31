@@ -45,3 +45,14 @@ void SpriteGo::Draw(sf::RenderWindow& window)
 	GameObject::Draw(window);
 	window.draw(sprite);
 }
+
+void SpriteGo::ChangeTexture(const std::string& texId)
+{
+	this->textureId = texId;
+	Reset();
+}
+
+void SpriteGo::SetBrightness(int bright)
+{
+	sprite.setColor(sf::Color(bright, bright, bright, 255));
+}

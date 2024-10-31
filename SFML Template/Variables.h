@@ -13,11 +13,9 @@ public:
     std::string Player1TexId;
     std::string Player2TexId;
     
-    std::string BackGroundTexId;
+    std::string BackGroundTexId = "graphics/background.png";
 
     PlayMode SelectedPlayMode;
-
-    void GetBGTexId();
 
 };
 

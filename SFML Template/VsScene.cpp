@@ -16,7 +16,7 @@ void VsScene::Init()
 {
 	std::cout << "VsScene::Init()" << std::endl;
 
-	GameObject* obj = AddGo(new SpriteGo("graphics/background.png"));
+	GameObject* obj = AddGo(new SpriteGo(VAR.BackGroundTexId));
 	obj->sortingLayer = SortingLayers::Background;
 	obj->sortingOrder = -1;
 	obj->SetOrigin(Origins::MC);
@@ -97,7 +97,7 @@ void VsScene::Init()
 
 void VsScene::Enter()
 {
-	TEXTURE_MGR.Load("graphics/background.png");
+	TEXTURE_MGR.Load(VAR.BackGroundTexId);
 	TEXTURE_MGR.Load("graphics/cloud.png");
 	TEXTURE_MGR.Load("graphics/tree.png");
 	TEXTURE_MGR.Load("graphics/branch.png");
@@ -134,7 +134,7 @@ void VsScene::Exit()
 	Scene::Exit();
 
 	TEXTURE_MGR.Unload("graphics/cloud.png");
-	TEXTURE_MGR.Unload("graphics/background.png");
+	TEXTURE_MGR.Unload(VAR.BackGroundTexId);
 	TEXTURE_MGR.Unload("graphics/tree.png");
 	TEXTURE_MGR.Unload("graphics/branch.png");
 	TEXTURE_MGR.Unload("graphics/log.png");

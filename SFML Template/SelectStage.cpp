@@ -72,17 +72,6 @@ void SelectStage::Exit()
 void SelectStage::Update(float dt)
 {
 	Scene::Update(dt);
-
-	if (InputMgr::GetKeyDown(sf::Keyboard::Num1))
-	{
-		SCENE_MGR.ChangeScene(SceneIds::Dev1);
-	}
-
-	if (InputMgr::GetKeyDown(sf::Keyboard::Num2))
-	{
-		SCENE_MGR.ChangeScene(SceneIds::Dev2);
-	}
-
 	if (InputMgr::GetMouseButtonDown(sf::Mouse::Left)) {
 		if (stage1Btn->IsCursorOn()) {
 			stage1BtnPressed = true;
@@ -92,15 +81,25 @@ void SelectStage::Update(float dt)
 		}
 	}
 	if (InputMgr::GetMouseButtonUp(sf::Mouse::Left)) {
-		if (stage2Btn->IsCursorOn()) {
+		if (stage1Btn->IsCursorOn()) {
 			stage1BtnPressed = false;
-			SCENE_MGR.ChangeScene(SceneIds::Select);
+			SCENE_MGR.ChangeScene(SceneIds::VsScene);
 		}
-		else if (stage2Btn->IsCursorOn()) {
+		else if (stage2Btn->IsCursorOn()) 
+		{
 			stage2BtnPressed = false;
-			//FRAMEWORK.GetWindow().close();
+			VAR.BackGroundTexId = "graphics/background2.png";
+			if(VAR.SelectedPlayMode == PlayMode::Single)
+			{
+				SCENE_MGR.ChangeScene(SceneIds::Dev1);
+			}
+			else if (VAR.SelectedPlayMode == PlayMode::Multi)
+			{
+				SCENE_MGR.ChangeScene(SceneIds::VsScene);
+			}
 		}
-		else {
+		else 
+		{
 			stage1BtnPressed = false;
 			stage2BtnPressed = false;
 		}
@@ -146,4 +145,8 @@ void SelectStage::SetCenterMessage(const std::string& msg)
 void SelectStage::SetVisibleCenterMessage(bool visible)
 {
 	centerMsg->SetActive(visible);
+}
+
+void SelectStage::GetBackgroundTexID()
+{
 }

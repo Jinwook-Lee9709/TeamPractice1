@@ -17,8 +17,6 @@ public:
 
     PlayMode SelectedPlayMode;
 
-    void GetBGTexId();
-
 };
 
 #define VAR (Variables::Instance())

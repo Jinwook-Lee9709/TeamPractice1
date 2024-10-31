@@ -11,7 +11,10 @@ SelectPlate::SelectPlate(const std::string& texId, const std::string& fontId, in
 void SelectPlate::Reset()
 {
 	SpriteGo::Reset();
+	Selected = false;
 	text.setFont(FONT_MGR.Get(fontId));
+	spriteSelect.setTexture(TEXTURE_MGR.Get("graphics/selected.png"));
+	spriteSelect.setScale(0.2f, 0.2f);
 	if(playerNum == 1){
 		for (int i = 0; i < 3; i++) {
 			Key[i].setString(p1Key[i]);
@@ -49,6 +52,7 @@ void SelectPlate::SetPosition(const sf::Vector2f& pos)
 	Key[0].setPosition(spritePos - horizontalGap);
 	Key[1].setPosition(spritePos + horizontalGap);
 	Key[2].setPosition(spritePos + verticalGap);
+	spriteSelect.setPosition(spritePos + sf::Vector2f(50.f, 50.f));
 	text.setPosition(spritePos - verticalGap);
 }
 
@@ -65,4 +69,12 @@ void SelectPlate::Draw(sf::RenderWindow& window)
 	for (auto it : Key) {
 		window.draw(it);
 	}
+	if (Selected) {
+		window.draw(spriteSelect);
+	}
+}
+
+void SelectPlate::SetSelect(bool selected)
+{
+	Selected = selected;
 }

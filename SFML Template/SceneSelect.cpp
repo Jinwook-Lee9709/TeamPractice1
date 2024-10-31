@@ -72,6 +72,7 @@ void SceneSelect::Enter()
 	TEXTURE_MGR.Load("graphics/player1.png");
 	TEXTURE_MGR.Load("graphics/player2.png");
 	TEXTURE_MGR.Load("graphics/player3.png");
+	TEXTURE_MGR.Load("graphics/selected.png");
 	FONT_MGR.Load("fonts/KOMIKAP_.ttf");
 
 	Scene::Enter();
@@ -89,6 +90,7 @@ void SceneSelect::Exit()
 	TEXTURE_MGR.Unload("graphics/player1.png");
 	TEXTURE_MGR.Unload("graphics/player2.png");
 	TEXTURE_MGR.Unload("graphics/player3.png");
+	TEXTURE_MGR.Unload("graphics/selected.png");
 	FONT_MGR.Unload("fonts/KOMIKAP_.ttf");
 }
 
@@ -169,11 +171,20 @@ void SceneSelect::UpdateSelectMode()
 
 void SceneSelect::UpdateSelectCharacter()
 {
-	if (p1Selected && p2Selected) {
-		VAR.Player1TexId = characterTexId[p1SpriteIndex];
-		VAR.Player2TexId = characterTexId[p2SpriteIndex];
-		SCENE_MGR.ChangeScene(SceneIds::SelectStage);
+	if (VAR.SelectedPlayMode == PlayMode::Single) {
+		if (p1Selected) {
+			VAR.Player1TexId = characterTexId[p1SpriteIndex];
+			SCENE_MGR.ChangeScene(SceneIds::SelectStage);
+		}
 	}
+	if (VAR.SelectedPlayMode == PlayMode::Multi) {
+		if (p1Selected && p2Selected) {
+			VAR.Player1TexId = characterTexId[p1SpriteIndex];
+			VAR.Player2TexId = characterTexId[p2SpriteIndex];
+			SCENE_MGR.ChangeScene(SceneIds::SelectStage);
+		}
+	}
+
 	
 	if (!p1Selected) {
 		if (InputMgr::GetKeyDown(sf::Keyboard::A)) {
@@ -197,6 +208,7 @@ void SceneSelect::UpdateSelectCharacter()
 	}
 	if (InputMgr::GetKeyDown(sf::Keyboard::Z)) {
 		p1Selected = !p1Selected;
+		p1Plate->SetSelect(p1Selected);
 	}
 	if (!p2Selected) {
 		if (InputMgr::GetKeyDown(sf::Keyboard::Left)) {
@@ -220,6 +232,7 @@ void SceneSelect::UpdateSelectCharacter()
 	}
 	if (InputMgr::GetKeyDown(sf::Keyboard::Enter)) {
 		p2Selected = !p2Selected;
+		p2Plate->SetSelect(p2Selected);
 	}
 }
 

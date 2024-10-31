@@ -141,12 +141,6 @@ void SceneDev1::Update(float dt)
 {
 	Scene::Update(dt);
 
-
-	if (InputMgr::GetKeyDown(sf::Keyboard::Space))
-	{
-		SCENE_MGR.ChangeScene(SceneIds::VsScene);
-	}
-
 	switch (currentStatus)
 	{
 	case SceneDev1::Status::Awake:
@@ -299,5 +293,16 @@ void SceneDev1::OnChop(Sides side, ChkPlayer chk)
 	{
 		SetScore(score + 100);
 		timer += 0.2f;
+
+		if (score == 2000)
+		{
+			player->Recovery();
+			spriteHeart[player->GetHp()]->SetActive(true);
+		}
+		else if (score == 10000 && player->GetHp() <= 2)
+		{
+			player->Recovery();
+			spriteHeart[player->GetHp()]->SetActive(true);
+		}
 	}
 }

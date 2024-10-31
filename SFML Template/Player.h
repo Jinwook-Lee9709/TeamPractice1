@@ -74,5 +74,9 @@ public:
 	void Hit() { HP--; }
 	void HitP1() { P1HP--; }
 	void HitP2() { P2HP--; }
+
+	void Recovery() { HP++; }
+	void RecoveryP1();
+	void RecoveryP2();
 };
 

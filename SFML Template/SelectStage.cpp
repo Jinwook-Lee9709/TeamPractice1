@@ -83,6 +83,12 @@ void SelectStage::Update(float dt)
 	if (InputMgr::GetMouseButtonUp(sf::Mouse::Left)) {
 		if (stage1Btn->IsCursorOn()) {
 			stage1BtnPressed = false;
+			VAR.BackGroundTexId == "graphics/background.png";
+			if (VAR.SelectedPlayMode == PlayMode::Single)
+			{
+			SCENE_MGR.ChangeScene(SceneIds::Dev1);
+			}
+			if(VAR.SelectedPlayMode == PlayMode::Multi)
 			SCENE_MGR.ChangeScene(SceneIds::VsScene);
 		}
 		else if (stage2Btn->IsCursorOn()) 

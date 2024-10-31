@@ -205,3 +205,19 @@ void Player::SetSceneGame(Scene* scene)
 {
 	sceneGame = scene;
 }
+
+void Player::RecoveryP1()
+{
+	if(P1HP < 3)
+	{
+		P1HP++;
+	}
+}
+
+void Player::RecoveryP2()
+{
+	if (P2HP < 3)
+	{
+		P2HP++;
+	}
+}

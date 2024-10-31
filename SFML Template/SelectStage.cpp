@@ -72,17 +72,6 @@ void SelectStage::Exit()
 void SelectStage::Update(float dt)
 {
 	Scene::Update(dt);
-
-	if (InputMgr::GetKeyDown(sf::Keyboard::Num1))
-	{
-		SCENE_MGR.ChangeScene(SceneIds::Dev1);
-	}
-
-	if (InputMgr::GetKeyDown(sf::Keyboard::Num2))
-	{
-		SCENE_MGR.ChangeScene(SceneIds::Dev2);
-	}
-
 	if (InputMgr::GetMouseButtonDown(sf::Mouse::Left)) {
 		if (stage1Btn->IsCursorOn()) {
 			stage1BtnPressed = true;
@@ -92,9 +81,9 @@ void SelectStage::Update(float dt)
 		}
 	}
 	if (InputMgr::GetMouseButtonUp(sf::Mouse::Left)) {
-		if (stage2Btn->IsCursorOn()) {
+		if (stage1Btn->IsCursorOn()) {
 			stage1BtnPressed = false;
-			SCENE_MGR.ChangeScene(SceneIds::Select);
+			SCENE_MGR.ChangeScene(SceneIds::Dev1);
 		}
 		else if (stage2Btn->IsCursorOn()) {
 			stage2BtnPressed = false;

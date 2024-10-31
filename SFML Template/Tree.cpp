@@ -70,6 +70,14 @@ void Tree::Reset()
 	tree.setTexture(TEXTURE_MGR.Get(treeTexId), true);
 	for (auto branch : branches)
 	{
+		if (VAR.SelectedPlayMode == PlayMode::Multi) {
+			if (branch->GetSide() == Sides::Left) {
+				branch->SetScale({ -0.7f, 1.f });
+			}
+			else if (branch->GetSide() == Sides::Right) {
+				branch->SetScale({ 0.7f, 1.f });
+			}
+		}
 		branch->Reset();
 	}
 	UpdateBranchPos();

@@ -102,7 +102,6 @@ void Tree::Update(float dt)
 
 void Tree::Draw(sf::RenderWindow& window)
 {
-	window.draw(tree);
 	for (auto branch : branches)
 	{
 		if (branch->IsActive())
@@ -110,6 +109,7 @@ void Tree::Draw(sf::RenderWindow& window)
 			branch->Draw(window);
 		}
 	}
+	window.draw(tree);
 }
 
 void Tree::SetPosition(const sf::Vector2f& pos)

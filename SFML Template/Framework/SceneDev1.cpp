@@ -16,7 +16,7 @@ void SceneDev1::Init()
 {
 	std::cout << "SceneDev1::Init()" << std::endl;
 
-	GameObject* obj = AddGo(new SpriteGo(VAR.BackGroundTexId,"BackGround"));
+	GameObject* obj = AddGo(new SpriteGo(VAR.BackGroundTexId, "BackGround"));
 	obj->sortingLayer = SortingLayers::Background;
 	obj->sortingOrder = -1;
 	obj->SetOrigin(Origins::MC);
@@ -41,6 +41,7 @@ void SceneDev1::Init()
 	TEXTURE_MGR.Load("graphics/rip.png");
 	TEXTURE_MGR.Load("graphics/axe.png");
 	TEXTURE_MGR.Load("graphics/heart.png");
+	TEXTURE_MGR.Load("graphics/coconut.png");
 
 	tree = AddGo(new Tree("Tree"));
 	player = AddGo(new Player("Player"));
@@ -92,6 +93,7 @@ void SceneDev1::Enter()
 	TEXTURE_MGR.Load("graphics/rip.png");
 	TEXTURE_MGR.Load("graphics/axe.png");
 	TEXTURE_MGR.Load("graphics/heart.png");
+	TEXTURE_MGR.Load("graphics/coconut.png");
 	FONT_MGR.Load("fonts/KOMIKAP_.ttf");
 	SOUNDBUFFER_MGR.Load("sound/chop.wav");
 	SOUNDBUFFER_MGR.Load(sbIdDeath);
@@ -130,6 +132,7 @@ void SceneDev1::Exit()
 	TEXTURE_MGR.Unload("graphics/rip.png");
 	TEXTURE_MGR.Unload("graphics/axe.png");
 	TEXTURE_MGR.Unload("graphics/heart.png");
+	TEXTURE_MGR.Unload("graphics/coconut.png");
 	FONT_MGR.Unload("fonts/KOMIKAP_.ttf");
 	SOUNDBUFFER_MGR.Unload("sound/chop.wav");
 	SOUNDBUFFER_MGR.Unload("sound/death.wav");
@@ -275,6 +278,8 @@ void SceneDev1::UpdatePause(float dt)
 
 void SceneDev1::OnChop(Sides side, ChkPlayer chk)
 {
+	std::random_device rd;
+	float randomnum = Utils::RandomValue();
 	Sides branchSide = tree->Chop(side);
 	if (player->GetSide() == branchSide)
 	{
@@ -293,16 +298,10 @@ void SceneDev1::OnChop(Sides side, ChkPlayer chk)
 	{
 		SetScore(score + 100);
 		timer += 0.2f;
-
-		if (score == 2000)
+		if (randomnum <= 0.05f)
 		{
 			player->Recovery();
-			spriteHeart[player->GetHp()]->SetActive(true);
-		}
-		else if (score == 10000 && player->GetHp() <= 2)
-		{
-			player->Recovery();
-			spriteHeart[player->GetHp()]->SetActive(true);
+			spriteHeart[player->GetHp() - 1]->SetActive(true);
 		}
 	}
 }

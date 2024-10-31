@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include <algorithm>
 #include <iostream>
+#include <random>
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>

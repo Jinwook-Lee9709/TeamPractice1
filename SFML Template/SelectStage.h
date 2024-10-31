@@ -42,7 +42,5 @@ public:
 
 	void SetCenterMessage(const std::string& msg);
 	void SetVisibleCenterMessage(bool visible);
-
-	void GetBackgroundTexID();
 };
 

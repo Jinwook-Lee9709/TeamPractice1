@@ -87,6 +87,16 @@ void Player::Init()
 
 	spriteRip.setTexture(TEXTURE_MGR.Get(texIdRip));
 	Utils::SetOrigin(spriteRip, Origins::BC);
+
+	sf::Vector2f CoconutPos = spritePlayer.getPosition();
+	sf::Vector2f newCCNPos = { CoconutPos.x, -75.f };
+
+	for (int i = 0; i < 2; i++)
+	{
+		spriteCoconut[i].setTexture(TEXTURE_MGR.Get(texIdCoconut));
+		spriteCoconut[i].setOrigin(originCoconut);
+		spriteCoconut[i].setPosition({CoconutPos.x, newCCNPos.y});
+	}
 }
 
 void Player::Reset()
@@ -204,6 +214,14 @@ void Player::PlaySecondP(float dt)
 void Player::SetSceneGame(Scene* scene)
 {
 	sceneGame = scene;
+}
+
+void Player::Recovery()
+{
+	if (GetHp() < 3)
+	{
+		HP++;
+	}
 }
 
 void Player::RecoveryP1()

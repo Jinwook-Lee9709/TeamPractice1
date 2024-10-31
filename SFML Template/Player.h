@@ -13,11 +13,13 @@ protected:
 	sf::Sprite spritePlayer;
 	sf::Sprite spriteAxe;
 	sf::Sprite spriteRip;
+	sf::Sprite spriteCoconut[2];
 
 	std::string sbIdChop = "sound/chop.wav";
 	std::string texIdPlayer = "graphics/player.png";
 	std::string texIdAxe = "graphics/axe.png";
 	std::string texIdRip = "graphics/rip.png";
+	std::string texIdCoconut = "graphics/coconut.png";
 
 	Sides side = Sides::Right;
 
@@ -26,6 +28,7 @@ protected:
 	sf::Vector2f localRipAxe = { 0.f, 0.f };
 
 	sf::Vector2f originAxe = { -65.f, 0.f };
+	sf::Vector2f originCoconut = { 75.f, 75.f };
 
 	bool isAlive = true;
 	bool isChppoing = false;
@@ -34,6 +37,8 @@ protected:
 
 	int P1HP = 3;
 	int P2HP = 3;
+
+	float speed = 5.f;
 
 	ChkPlayer chkP = ChkPlayer::FirstP;
 
@@ -75,7 +80,7 @@ public:
 	void HitP1() { P1HP--; }
 	void HitP2() { P2HP--; }
 
-	void Recovery() { HP++; }
+	void Recovery();
 	void RecoveryP1();
 	void RecoveryP2();
 };

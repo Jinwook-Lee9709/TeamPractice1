@@ -19,5 +19,8 @@ public:
 	void SetPosition(const sf::Vector2f& pos) override;
 	void SetScale(const sf::Vector2f& pos) override;
 	void Draw(sf::RenderWindow& window) override;
+
+	void ChangeTexture(const std::string& texId = "");
+	void SetBrightness(int bright);
 };
 

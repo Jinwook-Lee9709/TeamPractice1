@@ -124,6 +124,7 @@ void SceneSelect::Update(float dt)
 				else {
 					p1Plate->SetActive(true);
 					p2Plate->SetActive(true);
+					p1Plate->SetPosition({ 1920 * 0.25f + 100.f, 1080 * 0.5f });
 				}
 			
 			}
